@@ -110,7 +110,7 @@ $(document).ready(function() {
         password: formData.get("password")
       };
       axios
-        .post(`${API_URL}auth/register`, userInfo)
+        .post(`${AUTH_URL}register`, userInfo)
         .then(response => {
           console.log(response);
           if (sessionStorage.getItem('addListing')) {

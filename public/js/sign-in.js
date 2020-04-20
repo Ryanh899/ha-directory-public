@@ -21,7 +21,7 @@ const ADMIN_URL = "https://hadirectoryapi.com/admin/";
             password: $('#password').val().trim()
         }
         const registerCheck = sessionStorage.getItem('lastLocation')
-        axios.post(`${API_URL}auth/login`, userInfo)
+        axios.post(`${AUTH_URL}login`, userInfo)
             .then(response => {
                 console.log(response)
                 sessionStorage.setItem('token', response.data); 
