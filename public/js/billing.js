@@ -89,9 +89,10 @@ var myAxios = axios.create({
   
   // let API_URL = "http://ec2-34-201-189-88.compute-1.amazonaws.com/api/"
 // ec2 api url 
-const API_URL = "http://ec2-34-201-189-88.compute-1.amazonaws.com/api/"; 
-const ZOHO_URL = "http://ec2-34-201-189-88.compute-1.amazonaws.com/zoho/"; 
-const AUTH_URL = "http://ec2-34-201-189-88.compute-1.amazonaws.com/auth/"; 
+const API_URL = "https://hadirectoryapi.com/api/"; 
+const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
+const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
+const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
 
   // window.open("https://subscriptions.zoho.com/subscribe/2b47bf8abcb465deb8e32adfbb4e9754a7726ba08b65d6ccad482bf477cf719e/46ebc057-9935-4985-9d47-0145bfd47e9a")
 
