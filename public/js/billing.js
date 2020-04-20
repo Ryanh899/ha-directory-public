@@ -126,14 +126,14 @@ $(document).ready(function () {
         sessionStorage.setItem('lastLocation', 'billing__new')
         if (authHelper.isLoggedIn() && !claimCheck ) {
           const token = sessionStorage.getItem('token')
-          myAxios.get(ZOHO_URL + `findcustomer/user/${token}`)
+          myAxios.get(ZOHO_URL + `/findcustomer/user/${token}`)
             .then(customer => {
               console.log(customer)
               if (customer.data && customer.data.length) {
                 const customer_id = customer.data.customer_id
                 const token = sessionStorage.getItem('token')
                 if (plan === 'free-access' ) {
-                  myAxios.post(ZOHO_URL + 'subscription/createfree/existing', { customer_id, token })
+                  myAxios.post(ZOHO_URL + '/subscription/createfree/existing', { customer_id, token })
                     .then(subscription => {
                       console.log(subscription)
                       if (subscription.status === 200) {
@@ -180,12 +180,12 @@ $(document).ready(function () {
                       console.log(err)
                     })
                 }
-
-              } else if (customer.data || customer.data.length) {
+              }
+               else if (customer.data && !Array.isArray(customer.data)) {
                 const customer_id = customer.data.customer_id
                 const token = sessionStorage.getItem('token')
                 if (plan === 'free-access' ) {
-                  myAxios.post(ZOHO_URL + 'subscription/createfree/existing', { customer_id, token })
+                  myAxios.post(ZOHO_URL + '/subscription/createfree/existing', { customer_id, token })
                     .then(subscription => {
                       console.log(subscription)
                       if (subscription.status === 200) {
@@ -232,10 +232,11 @@ $(document).ready(function () {
                       console.log(err)
                     })
                 }
-              } else if (!customer.data && !customer.data.length) {
+              } 
+              else if (!customer.data || !customer.data.length) {
                 console.log('new lsiting, not existing customer')
                 if (plan === 'free-access' ) {
-                  myAxios.post(ZOHO_URL + 'subscription/createfree/new', { token })
+                  myAxios.post(ZOHO_URL + '/subscription/createfree/new', { token })
                     .then(resp => {
                       console.log(resp)
                       if (resp.status === 200) {
@@ -283,7 +284,7 @@ $(document).ready(function () {
             // get user token 
             const token = sessionStorage.getItem('token')
             // check to see if user is an existing zoho customer 
-            myAxios.get(ZOHO_URL + `findcustomer/user/${token}`)
+            myAxios.get(ZOHO_URL + `/findcustomer/user/${token}`)
               .then(customer => {
                 console.log(customer)
                 // if customer 
@@ -343,11 +344,11 @@ $(document).ready(function () {
                     })
                 }
               // if not existing zoho customer 
-              } else if (customer.status === 200 && !customer.data.length) {
+              } else if (!customer.data && !customer.data.length) {
                 if (plan === 'free-access' ) {
                   // create sub with existing customer id for free plan 
                     // 1. Get response --> insert into subs table --> insert into claims table --> send back status 
-                  myAxios.post(ZOHO_URL + 'subscription/claimfree/new', { token, claim })
+                  myAxios.post(ZOHO_URL + '/subscription/claimfree/new', { token, claim })
                     .then(subscription => {
                       console.log(subscription)
                       // if succesful 
@@ -400,6 +401,62 @@ $(document).ready(function () {
                 console.log(err)
               })
             
+          } else if (customer.data && !Array.isArray(customer.data)) {
+            // set customer id (zoho)
+            const customer_id = customer.customer_id
+            // if free plan
+            if (plan === 'free-access' ) {
+              // create sub with existing customer id for free plan 
+                // 1. Get response --> insert into subs table --> insert into claims table --> send back status 
+              myAxios.post(ZOHO_URL + 'subscription/claimfree/existing', { customer_id, claim })
+                .then(subscription => {
+                  console.log(subscription)
+                  // if succesful 
+                  if (subscription.status === 200) {
+                   window.location.assign('thank-you.html')
+                  } else {
+                    alert('Failed')
+                  }
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }
+            //light --existing claim 
+            else if (plan === 'light-access') {
+              myAxios.post(ZOHO_URL + '/hostedpage/claim/existing', { customer_id: customer.data.customer_id, plan: 'd2f4f1f0-1ad5-4c3a-912d-6646a5a46d08'  })
+                .then(response => {
+                  response = response.data.hostedpage
+                  window.open(response.url, '_self')
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }
+            // standard --existing claim 
+            else if (plan === 'standard-access') {
+              myAxios.post(ZOHO_URL + '/hostedpage/claim/existing', { customer_id: customer.data.customer_id, plan: 'ea78d785-2a2c-4b74-b578-fab3509b669c'  })
+                .then(response => {
+                  response = response.data.hostedpage
+                  window.open(response.url, '_self')
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }
+            // premium --existing claim 
+            else if (plan === 'premium-access') {
+              myAxios.post(ZOHO_URL + '/hostedpage/claim/existing', { customer_id: customer.data.customer_id, plan: '2528891f-8535-41dc-b07e-952b25113bd0'  })
+                .then(response => {
+                  response = response.data.hostedpage
+                  console.log(response)
+                  window.open(response.url, '_self')
+                })
+                .catch(err => {
+                  console.log(err)
+                })
+            }
+          // if not existing zoho customer 
           } else if ( !authHelper.isLoggedIn() ) {
             console.log('Not logged in')
             showErrModal('#error-modal', '#error-header', '#error-description', 'Account Error', 'You must be signed in to create a subscription')
