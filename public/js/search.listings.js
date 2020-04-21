@@ -148,6 +148,13 @@ $(document).ready(function() {
     geocoder = new google.maps.Geocoder();
   
   }
+
+  let location = {
+    coords: {
+      latitude: 28.438080,
+      longitude: -81.472870
+    }
+  };
   
   initialize(); 
   function getCity (lat, lng, city) {
@@ -246,6 +253,7 @@ $(document).ready(function() {
       navigator.geolocation.getCurrentPosition(showPosition);
     } else if([...arguments].length) {
       console.log("Geolocation is not supported by this browser.");
+      showPosition(location)
     }
   }
   
@@ -268,12 +276,7 @@ const ADMIN_URL = "https://hadirectoryapi.com/admin/";
   //   API_URL = "http://localhost:3000/api/";
   // }
 
-  let location = {
-    coords: {
-      latitude: 28.438080,
-      longitude: -81.472870
-    }
-  };
+
 
   $(page).css("display", "none");
 

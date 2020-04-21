@@ -20,6 +20,14 @@ function initialize() {
   geocoder = new google.maps.Geocoder();
 }
 
+// show modal
+function showErrModal (modal, header, description, errHeader, errMessage) {
+  $(header).text(errHeader)
+  $(description).text(errMessage)
+
+  $(modal).modal('show')
+}
+
 // gets current city and state from lat lng (ln 77)
 function getCity (lat, lng, city) {
   return new Promise((resolve, reject) => {
@@ -87,14 +95,52 @@ async function showPosition(position, city) {
   }
 }
 
+function checkPermission () {
+  if (navigator.permissions !== undefined) {
+    console.log(navigator)
+    navigator.permissions.query({
+      name: 'geolocation'
+    }).then(function(result) {
+      if (result.state == 'granted') {
+          return true
+      } else if (result.state == 'prompt') {
+        console.log(result.state);
+  
+          // navigator.geolocation.getCurrentPosition(revealPosition, positionDenied, geoSettings);
+  
+      } else if (result.state == 'denied') {
+          console.log(result.state);
+         return false
+      }
+      result.onchange = function() {
+        console.log(result.state);
+      }
+  });
+  } else {
+    return false
+  }
+  
+}
+
 // gets coords with geolocation and calls show position
 function getLocation(city) {
-  console.log([...arguments].length)
-  if (navigator.geolocation && ![...arguments].length) {
-    navigator.geolocation.getCurrentPosition(showPosition, null);
-  } else if([...arguments].length) {
-    console.log("Geolocation is not supported by this browser.");
+  console.log([...arguments].length);
+  console.log(navigator.geolocation); 
+  const permission = checkPermission();
+  if (permission) {
+    if (navigator.geolocation && ![...arguments].length) {
+      navigator.geolocation.getCurrentPosition(showPosition, null);
+    } else {
+      $(loader).hide(); 
+      $(page).fadeIn(); 
+      showErrModal('#error-modal', '#error-header', '#error-description', 'Location Error', "Please enable location services for the Hair Authority Directory");
+    } 
+  } else {
+      $(loader).hide(); 
+      $(page).fadeIn(); 
+      showErrModal('#error-modal', '#error-header', '#error-description', 'Location Error', "Please enable location services for the Hair Authority Directory");
   }
+
 }
 // list of categories
 const categories = [
@@ -179,7 +225,6 @@ $(document).ready(function() {
  
 // selecting page and loader, hide page => show loader
 
-$(page).hide(); 
 $(loader).show(); 
 
 // declare geocoder 
@@ -209,7 +254,7 @@ $("body").on("click", "a#search-button", async function() {
   // if location use location 
   if (location !== '') {
     await showPosition(null, location); 
-    sessionStorage.setItem('location', location)
+    sessionStorage.setItem('location', location);
   }
   // else set search, use current location already in storage, send to search page
   sessionStorage.setItem("lastLocation", "index");
