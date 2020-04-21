@@ -426,7 +426,7 @@ days.forEach(day => {
         const featureImageSegment = document.querySelector(
           "div#feature_image"
         );
-        const featureImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image}`;
+        const featureImage = `https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image}`;
         const featureId = listing.images.filter(x => !x.feature_image );
         displayPhoto(featureImage, featureId[0].image_id);
       }
@@ -443,7 +443,7 @@ days.forEach(day => {
           let image_id = image.image_id;
           let feature_image = image.featured_image;
 
-          let thisImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+          let thisImage = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
 
           return { image_id, thisImage, feature_image };
         }

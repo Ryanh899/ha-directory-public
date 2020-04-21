@@ -505,7 +505,7 @@ async function drawMap(geoPos, city) {
                       <img 
                       style="max-height: 200px;"
                       class="ui rounded fluid image"
-                      src="https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
                     />
                   </div>
                 </div>
@@ -605,7 +605,7 @@ async function drawMap(geoPos, city) {
                   <div class="ui image" >
                       <img
                       class="ui rounded image"
-                      src="https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
                     />
                   </div>
                 </div>
@@ -710,7 +710,7 @@ async function drawMap(geoPos, city) {
                   <div class="ui image" >
                       <img
                       class="ui rounded image"
-                      src="https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
                     />
                   </div>
                 </div>

@@ -803,7 +803,7 @@ function readQlFile(file, imagesArr, quill) {
           const featureImageSegment = document.querySelector(
             "div#feature_image"
           );
-          const featureImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image}`;
+          const featureImage = `https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image}`;
           const featureId = listing.images.filter(x => !x.feature_image );
           console.log(featureId);
           displayPhoto(featureImage, featureId[0].image_id);
@@ -822,7 +822,7 @@ function readQlFile(file, imagesArr, quill) {
             let image_id = image.image_id;
             let feature_image = image.featured_image;
 
-            let thisImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+            let thisImage = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
 
             return { image_id, thisImage, feature_image };
           }
@@ -1099,7 +1099,7 @@ function readQlFile(file, imagesArr, quill) {
             const featureImageSegment = document.querySelector(
               "div#feature_image"
             );
-            const featureImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image}`;
+            const featureImage = `https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image}`;
             const featureId = listing.images.filter(x => !x.feature_image);
             console.log(featureId);
             displayPhoto(featureImage, featureId[0].image_id);
@@ -1118,7 +1118,7 @@ function readQlFile(file, imagesArr, quill) {
               let image_id = image.image_id;
               let feature_image = image.featured_image;
   
-              let thisImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+              let thisImage = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
   
               return { image_id, thisImage, feature_image };
             } else {
@@ -1392,7 +1392,7 @@ function readQlFile(file, imagesArr, quill) {
             const featureImageSegment = document.querySelector(
               "div#feature_image"
             );
-            const featureImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image}`;
+            const featureImage = `https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image}`;
             const featureId = listing.images.filter(x => !x.feature_image);
             console.log(featureId);
             displayPhoto(featureImage, featureId[0].image_id);
@@ -1411,7 +1411,7 @@ function readQlFile(file, imagesArr, quill) {
               let image_id = image.image_id;
               let feature_image = image.featured_image;
   
-              let thisImage = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+              let thisImage = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
   
               return { image_id, thisImage, feature_image };
             } else {

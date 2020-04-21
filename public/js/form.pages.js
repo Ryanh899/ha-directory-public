@@ -401,7 +401,7 @@ $(document).ready(function() {
                 <div  class="five wide middle aligned column">
                       <img
                       class="ui rounded image"
-                      src="https://ha-images-02.s3-us-west-1.amazonaws.com/${listing.feature_image ||
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image ||
                         "placeholder.png"}"
                     />
                 </div>

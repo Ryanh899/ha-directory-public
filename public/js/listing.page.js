@@ -286,7 +286,7 @@ $(document).ready(function() {
                        // p tag
                        let thisImage = document.createElement("img");
                        // src
-                       thisImage.src = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+                       thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
                        thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
@@ -417,7 +417,7 @@ $(document).ready(function() {
                        // p tag
                        let thisImage = document.createElement("img");
                        // src
-                       thisImage.src = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+                       thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
                        thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
@@ -643,7 +643,7 @@ const images = await filteredImg.map(image => {
     // p tag
     let thisImage = document.createElement("img");
     // src
-    thisImage.src = `https://ha-images-02.s3-us-west-1.amazonaws.com/${image.image_path}`;
+    thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
     // margin and padding
     thisImage.style.padding = "1rem 0 0 1rem";
     thisImage.style.margin = "auto 0 0 0";
