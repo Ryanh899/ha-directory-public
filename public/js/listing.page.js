@@ -118,6 +118,13 @@ $(document).ready(function() {
   // hide the page and let the loader run
   $(page).fadeOut(); 
 
+  // on resize move rail
+  $(window).bind("resize", function () {
+    if ($(this).width() < 800) {
+        $('#right-rail').removeClass('ui right very close rail'); 
+    } 
+}).trigger('resize');
+
   // function to initiate map
   function getGeolocation() {
     console.log("map");
@@ -230,7 +237,7 @@ $(document).ready(function() {
       // reveal page and hide loader
       $("#images").css("dislplay", "");
       $(loader).css("display", "none");
-      $(page).css("display", "");
+      $(page).fadeIn(250)
     }
   }
 
@@ -265,7 +272,7 @@ $(document).ready(function() {
       .get(API_URL + "listing/" + currentListing)
       .then(async response => {
         // then hide page
-        $(page).css("display", "none");
+        // $(page).css("display", "none");
         console.log(response); 
 
         // assign listing to the response

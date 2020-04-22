@@ -86,7 +86,7 @@ if (authHelper.isLoggedIn()) {
       </div>
       `);
     } else if (userInfo && userInfo.isProfessionalUser) {
-      $('#nav-spacer').css('display', 'none')
+      $('.nav-spacer').css('display', 'none')
       $("#register-column").html(`
       <div id="client-drop-div">
         <div id="client-dropdown" class="ui inline dropdown">
@@ -111,7 +111,7 @@ if (authHelper.isLoggedIn()) {
       $(".ui.dropdown").dropdown({ transition: "drop" });
       $("#sign-in-column").html("");
     } else if (userInfo && userInfo.isAdminUser) {
-      $('#nav-spacer').css('display', 'none')
+      $('.nav-spacer').css('display', 'none')
       $("#register-column").html(`
       <div id="client-drop-div">
         <div id="client-dropdown" class="ui inline dropdown">

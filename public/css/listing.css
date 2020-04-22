@@ -84,7 +84,7 @@ a:hover {
   font-size: 18px;
 }
 
-#back-button {
+/* #back-button {
   padding: 0.75rem;
   float: right;
   background: #f9f9f9;
@@ -92,7 +92,7 @@ a:hover {
   position: relative;
   width: 15%;
   text-align: center;
-}
+} */
 
 #store-info-div {
   border: solid;
@@ -317,7 +317,7 @@ a:hover {
   width: 15%;
   text-align: center;
 }
-
+/* 
 #back-button {
   background: #f9f9f9;
   font-family: "lato", sans-serif;
@@ -326,7 +326,7 @@ a:hover {
   height: 101%;
   display: table;
   width: 100%;
-}
+} */
 
 #back-column {
   padding: 0px;

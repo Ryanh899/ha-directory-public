@@ -22,14 +22,14 @@ $(document).ready(setTimeout(function () {
             }
           },
           {
-            breakpoint: 600,
+            breakpoint: 750,
             settings: {
               slidesToShow: 2,
               slidesToScroll: 2
             }
           },
           {
-            breakpoint: 480,
+            breakpoint: 500,
             settings: {
               slidesToShow: 1,
               slidesToScroll: 1
