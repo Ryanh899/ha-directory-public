@@ -46,6 +46,7 @@ const API_URL = "https://hadirectoryapi.com/api/";
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
+const frontUrl = 'https://hairauthoritydirectory.s3.amazonaws.com/'; 
 
 // days of the week for business hours
 const weekDays = [
