@@ -302,6 +302,38 @@ $("body").on("click", "a#search-button", async function() {
 
 });
 
+// on search click
+$("body").on("click", "button#search-button", async function() {
+  // show loader hide page
+  $(page).fadeOut(); 
+  $(loader).show(); 
+
+  // if mobile 
+  if ( !isMobile() ) {
+  // get search and location
+  const search = document.querySelector("input#request").value.trim();
+  const location = document.querySelector('input#location').value.trim(); 
+
+  // if location use location 
+  if ( location !== '' ) {
+    await showPosition(null, location); 
+    sessionStorage.setItem('location', location);
+  }
+  // else set search, use current location already in storage, send to search page
+  sessionStorage.setItem("lastLocation", "index");
+  sessionStorage.setItem("searchQuery", search);
+  window.location.assign("search.listings.html");
+  } else if ( isMobile() ) {
+    // get search and location
+  const search = document.querySelector("input#search-semantic").value.trim();
+
+  // else set search, use current location already in storage, send to search page
+  sessionStorage.setItem("lastLocation", "index");
+  sessionStorage.setItem("searchQuery", search);
+  window.location.assign("search.listings.html");
+  }
+
+});
 // category button click
 $("body").on("click", ".catButtons", function(e) {
   const search = $(e.target).text();
