@@ -603,7 +603,7 @@ $(document).ready(function() {
                            console.log(changeChannelId.join(""));
                            let newChannelId = changeChannelId.join("");
                            $("#youtube-col").append(
-                             `<div id="youtube-embed" class="ui embed youtube" data-url="http://www.youtube.com/embed/videoseries?list=${newChannelId}&origin=${frontUrl}"  ></div>`
+                             `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/videoseries?list=${newChannelId}&origin=${frontUrl}"  ></div>`
                            );
                            $("#youtube-embed").embed();
                          } else {
@@ -856,7 +856,7 @@ if (listing.youtube) {
         console.log(changeChannelId.join(""));
         let newChannelId = changeChannelId.join("");
         $("#youtube-col").append(
-          `<div id="youtube-embed" class="ui embed youtube" data-url="http://www.youtube.com/embed/videoseries?list=${newChannelId}&origin=${frontUrl}"  ></div>`
+          `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/videoseries?list=${newChannelId}&origin=${frontUrl}"  ></div>`
         );
         $("#youtube-embed").embed();
       } else {
