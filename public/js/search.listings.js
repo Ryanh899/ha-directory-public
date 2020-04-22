@@ -141,8 +141,9 @@ $(document).ready(function() {
   let geocoder; 
 
   let distance = sessionStorage.getItem('distance') || 80467; 
-
-  $(`#${distance}`).addClass('active')
+  console.log(distance)
+  $(`#${distance}`).addClass('active'); 
+  $(`#mobile-${distance}`).addClass('active'); 
 
   function initialize() {
     geocoder = new google.maps.Geocoder();
@@ -409,6 +410,25 @@ async function drawMap(geoPos, city) {
     // window.location.assign("search.listings.html");
   });
 
+  $("body").on("click", "a#mobile-search-button", async function() {
+    $(loader).show()
+    let search; 
+    document.querySelector("input#mobile-request").value.trim() ? search = document.querySelector("input#mobile-request").value.trim() : search = sessionStorage.getItem('searchQuery')
+    const location = document.querySelector('input#mobile-location').value.trim(); 
+    console.log(search); 
+    console.log(location)
+
+    if (location !== '') {
+      await showPosition(null, location); 
+      sessionStorage.setItem('location', location); 
+    }
+    sessionStorage.setItem("lastLocation", "index");
+    sessionStorage.setItem("searchQuery", search);
+
+    searchListings()
+    // window.location.assign("search.listings.html");
+  });
+
   $("body").on("click", "#home-button", function() {
 
     sessionStorage.setItem('lastLocation', 'search')
@@ -420,10 +440,18 @@ async function drawMap(geoPos, city) {
     if ($(this).attr('id') !== distance) {
       $(this).addClass('active'); 
       $(`#${distance}`).removeClass('active'); 
+      $(`#mobile-${distance}`).removeClass('active'); 
 
-      distance = $(this).attr('id'); 
-      sessionStorage.setItem('distance', distance); 
+      if ($(this).attr('id').split('-').length <= 1) {
+        distance = $(this).attr('id'); 
+        sessionStorage.setItem('distance', distance); 
+      } else {
+        distance = $(this).attr('id').split('-')[1]; 
+        sessionStorage.setItem('distance', distance); 
+      }
 
+
+      searchListings()
       console.log(distance)
     }
     
