@@ -44,16 +44,12 @@
     <div id="home-loader" class="ui active inverted dimmer">
       <div class="ui text loader">Loading</div>
    </div>
-   <div id="error-modal" class="ui modal">
-    <i class="close icon"></i>
-    <div id="error-header" class="header modalHeader"></div>
-      <div id="error-description" class="description modalDescription"></div>
-    <div class="fluid actions">
-        <a ><div style="width: 100%;" class="ui button modal-cancel modalDescription"> Ok</div></a>
-        <!-- <a href="sign-in.html"><div style="width: 48%;" class="ui button modal-signIn modalDescription">Sign In</div></a>  -->
-    </div>
-  </div>
     <div class="ui grid container" id="page-container" style="display: none;">
+      <div id="error-modal" class="ui modal">
+        <i class="close icon"></i>
+        <div id="error-header" class="header modalHeader"></div>
+          <div id="error-description" class="description modalDescription"></div>
+      </div>
       <!-- top menu  -->
       <div class="row" id="top-menu-row">
         <div class="ui grid" id="landing-grid">
@@ -67,9 +63,7 @@
           <div style="padding: 1rem;" class="six wide computer six wide mobile middle aligned column">
             <p id="ha-title">Hair Authority Directory</p>
           </div>
-          <div class="three wide computer two wide mobile column"></div>
-          <!-- dashboard column  -->
-          <div id="dashboard-column" class="two wide computer one wide mobile column"></div>
+          <div class="five wide computer only column"></div>
           <!-- sign in column  -->
           <div id="sign-in-column" class="two wide computer three wide mobile column">
             <!-- sign in button  -->
@@ -175,7 +169,7 @@
           <div
             id="search-appendButtons"
           >
-          <div class="search">
+          <div id="web-search" class="search">
               <div class="left-side">
                 <input id="request" type="text" placeholder="Title, category, ..." class="field request">
                 <div class="field-wrapper">
@@ -203,7 +197,7 @@
               </div>
               <a id="search-button" class="search_button">Search</a>
             </div>
-            <!-- <div class="ui right action left icon input fluid search">
+            <div style="display: none;" id="mobile-search" class="ui right action left icon input fluid search">
               <i id="search-icon" class="search icon"></i>
               <input
                 id="search-semantic"
@@ -220,7 +214,7 @@
             >
               Search
             </button>
-            </div> -->
+            </div>
            
             <!-- CTA  -->
             <p style="display: block; color: black; text-align: center;" id="landing-list-p">
@@ -403,8 +397,8 @@
         >
           <img
             id="business-mag-img"
-            class="ui huge image"
-            src="https://https://hairauthoritydirectory.s3.amazonaws.com/ha_cutout-1.png"
+            class="ui large image"
+            src="https://hairauthoritydirectory.s3.amazonaws.com/ha_cutout-1.png"
           />
         </div>
         <div style="padding-top: 5rem;" class="five wide computer sixteen wide mobile left aligned column">

@@ -213,7 +213,7 @@ if (authHelper.isLoggedIn()) {
     $("#sign-in-column").html(
       `<div id="sign-in-button"><p id="sign-in">Sign In</p></div>`
     );
-    $("#dashboard-column").html("");
+    // $("#dashboard-column").html("");
     $("#logout-div").html("");
   });
 })
