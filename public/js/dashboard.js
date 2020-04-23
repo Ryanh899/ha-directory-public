@@ -257,9 +257,11 @@ async function appendListing (thisListing, quill, listingArr) {
   sessionStorage.setItem('plan', listing.subscription.plan_code)
 
   if (listing.subscription) {
-    const subValues = Object.values(listing.subscription);
+    const subInfo = _.pick(listing.subscription, 'status', 'plan_code'); 
+    console.log(subInfo)
+    const subValues = Object.values(subInfo);
     $('#subscription-segment').html('')
-    Object.keys(listing.subscription).forEach((item, index) => {
+    Object.keys(subInfo).forEach((item, index) => {
       if (subValues[index]!==null)
       $("#subscription-segment").append(
         `<p class="userInfo" ><strong>${item}</strong>: ${subValues[index]} `
