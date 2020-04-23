@@ -53,7 +53,9 @@ var authHelper = {
     }
   };
 
-
+{/* <div id="saved-listings-option" class="item">
+        <p class="user-menu-option-text" ><i class="bookmark icon" ></i> Bookmarked Listings</p>
+      </div> */}
 
 $(document).ready(function () {
 // checks if user is logged in and adjusts navbar appropriately
@@ -61,6 +63,7 @@ if (authHelper.isLoggedIn()) {
     const token = sessionStorage.getItem("token");
     const userInfo = authHelper.parseToken(token);
     if (userInfo && userInfo.isClientUser) {
+      $('#nav-spacer').css('display', 'none')
       $("#register-column").html(`
       <div id="client-drop-div">
         <div id="client-dropdown" class="ui inline dropdown">
@@ -69,9 +72,6 @@ if (authHelper.isLoggedIn()) {
         </div>
         <i id="dropdown-icon" class="dropdown icon"></i>
         <div class="menu">
-        <div id="saved-listings-option" class="item">
-        <p class="user-menu-option-text" ><i class="bookmark icon" ></i> Bookmarked Listings</p>
-      </div>
       <div id="logout-menu-option" class="item">
         <p class="user-menu-option-text" ><i class="power off icon" ></i> Logout</p>
       </div>
@@ -97,9 +97,6 @@ if (authHelper.isLoggedIn()) {
             <div id="dashboard-menu-option" class="item">
               <p class="user-menu-option-text" ><i class="building icon" ></i> Dashboard</p>
             </div>
-            <div id="saved-listings-option" class="item">
-              <p class="user-menu-option-text" ><i class="bookmark icon" ></i> Bookmarked Listings</p>
-            </div>
             <div id="logout-menu-option" class="item">
               <p class="user-menu-option-text" ><i class="power off icon" ></i> Logout</p>
             </div>
@@ -108,6 +105,7 @@ if (authHelper.isLoggedIn()) {
       </div>
       `);
       $(".ui.dropdown").dropdown({ transition: "drop" });
+      $('#nav-spacer').css('display', 'none')
       $("#sign-in-column").html("");
     } else if (userInfo && userInfo.isAdminUser) {
       $("#register-column").html(`
@@ -124,9 +122,6 @@ if (authHelper.isLoggedIn()) {
             <div id="dashboard-menu-option" class="item">
               <p class="user-menu-option-text" ><i class="building icon" ></i> Dashboard</p>
             </div>
-            <div id="saved-listings-option" class="item">
-              <p class="user-menu-option-text" ><i class="bookmark icon" ></i> Bookmarked Listings</p>
-            </div>
             <div id="logout-menu-option" class="item">
               <p class="user-menu-option-text" ><i class="power off icon" ></i> Logout</p>
             </div>
@@ -135,6 +130,7 @@ if (authHelper.isLoggedIn()) {
       </div>
       `);
       $(".ui.dropdown").dropdown({ transition: "drop" });
+      $('#nav-spacer').css('display', 'none')
       $("#sign-in-column").html("");
     }
   } else {
