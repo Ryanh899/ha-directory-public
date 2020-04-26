@@ -440,7 +440,7 @@ function readQlFile(file, imagesArr, quill) {
     console.log(file)
     const urlAndKey = await (
       await fetch(
-        `/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
+        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
       )
     ).json();
     console.log(urlAndKey);
@@ -480,7 +480,7 @@ function readQlFile(file, imagesArr, quill) {
     console.log(file)
     const urlAndKey = await (
       await fetch(
-        `/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
+        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
       )
     ).json();
     console.log(urlAndKey);
@@ -1616,7 +1616,7 @@ function readQlFile(file, imagesArr, quill) {
           let uploadImages = await descriptionImages.map(async (image, index) => {
               const urlAndKey = await (
                 await fetch(
-                  `/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
+                  `https://hadirectoryapi.com/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
                 )
               ).json();
               console.log(urlAndKey);

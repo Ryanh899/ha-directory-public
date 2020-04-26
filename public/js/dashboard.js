@@ -848,7 +848,7 @@ let images = [];
     const currentUser = authHelper.parseToken(sessionStorage.getItem("token"));
     const urlAndKey = await (
       await fetch(
-        `/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
+        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
       )
     ).json();
     console.log(urlAndKey);
@@ -886,7 +886,7 @@ let images = [];
     const currentUser = authHelper.parseToken(sessionStorage.getItem("token"));
     const urlAndKey = await (
       await fetch(
-        `/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
+        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
       )
     ).json();
     console.log(urlAndKey);
@@ -1515,7 +1515,7 @@ $(document).on("click", "button.other-remove", function(e) {
           let uploadImages = await descriptionImages.map(async (image, index) => {
               const urlAndKey = await (
                 await fetch(
-                  `/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
+                  `https://hadirectoryapi.com/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
                 )
               ).json();
               console.log(urlAndKey);
