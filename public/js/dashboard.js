@@ -1451,7 +1451,7 @@ $(document).on("click", "button.other-remove", function(e) {
     window.location.assign('billing__update.html')
   });
 
-  $("body").on("click", "button.submit-button", function(e) {
+  $("body").on("click", ".submit-button", function(e) {
     console.log(updates);
     e.preventDefault(); 
     let pendingCheck = sessionStorage.getItem('pendingListing')
