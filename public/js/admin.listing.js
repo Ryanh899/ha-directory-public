@@ -1017,7 +1017,7 @@ function readQlFile(file, imagesArr, quill) {
   
    //activate button
   const activate = document.querySelector('button.activate'); 
-  const cancel = document.querySelector('button.fluid-cancel'); 
+  const cancel = document.querySelector('button#fluid-cancel'); 
 
     if (subscription) {
       const subValues = Object.values(subscription__client);

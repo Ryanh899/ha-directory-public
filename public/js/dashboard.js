@@ -852,6 +852,7 @@ let images = [];
       )
     ).json();
     console.log(urlAndKey);
+    console.log('changes made')
     await fetch(urlAndKey.url, {
       method: "PUT",
       body: file
