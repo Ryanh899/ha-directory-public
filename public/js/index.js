@@ -264,7 +264,7 @@ initialize();
 getLocation();
 
 // appends category buttons
-categoryButtons(categories); 
+// categoryButtons(categories); 
 
 // slick images 
 setTimeout(slick(), 100)
