@@ -245,7 +245,7 @@ function slick() {
       }
     ]
   });
-}
+}; 
 
 // READY 
 $(document).ready(function() {
@@ -301,6 +301,16 @@ $("body").on("click", "a#search-button", async function() {
   }
 
 });
+
+$('body').on('click', '.hover-text', function () {
+    // get search value 
+    const search = $(this).text ().trim(); 
+
+    // set value in storage and reassign window 
+    sessionStorage.setItem("lastLocation", "index");
+    sessionStorage.setItem("searchQuery", search);
+    window.location.assign("search.listings.html");
+})
 
 // on search click
 $("body").on("click", "button#search-button", async function() {
