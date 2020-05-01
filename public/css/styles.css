@@ -6,6 +6,15 @@ body {
   margin: 0px;
 }
 
+.h1_bold {
+  font-weight: 700;
+  font-family: "Raleway";
+}
+
+.h3_medium {
+  font-family: 'Raleway';
+  font-weight: 500;
+}
 /* main container */
 #page-container {
   /* height: 80vh;  */
@@ -812,6 +821,7 @@ body {
   text-align: left;
   color: #696969;
   margin-bottom: 0rem;
+  margin-left: 2.5rem;
 }
 
 #step-2-content {
@@ -827,7 +837,7 @@ body {
 }
 
 #step-3 {
-  padding-top: 2rem;
+  padding-top: 5rem;
   padding-bottom: 5rem;
   padding-right: 2rem;
   background: white;
@@ -878,6 +888,7 @@ body {
 #step-3-title {
   text-align: left;
   color: #696969;
+  margin-left: 2.5rem;
 }
 
 #step-3-content {
@@ -1517,9 +1528,21 @@ body {
   border-radius: 0 4px 4px 0;
 }
 
-/* /right-side button */
+#category-section {
+  width: 100%;
+  background: white;
 
+}
 
+#category-section {
+  padding: 5rem 10rem 5rem 10rem;
+
+}
+
+.cat-images {
+  width: auto;
+  height: 200px;
+}
 
 
 @media only screen and (max-width: 600px) {
