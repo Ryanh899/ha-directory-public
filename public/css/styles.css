@@ -1194,6 +1194,7 @@ body {
   color: #696969;
   margin-top: .05rem;
   float: right;
+  cursor: pointer;
 }
 
 .hide {
@@ -1205,6 +1206,7 @@ body {
   border-width: 1px;
   border-color: #696969;
   padding: .5rem 1rem .5rem 1rem;
+  cursor: pointer;
 }
 
 /* #search-appendButtons {
@@ -1632,6 +1634,10 @@ body {
   font-size: 16px;
   padding: 16px 32px;
   cursor: pointer;
+}
+
+.hover-text:hover {
+  text-decoration: underline;
 }
 
 .highlight-text {
