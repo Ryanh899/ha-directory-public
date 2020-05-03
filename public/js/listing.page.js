@@ -881,10 +881,10 @@ if (listing.youtube) {
       }
     }
   } else {
-    let vidId = listing.youtube.split('?')[1]
+    let vidId = listing.youtube.split('=')[1]
     console.log(vidId);
     $("#youtube-col").append(
-      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}"  ></div>`
+      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None"  ></div>`
     );
     $("#youtube-embed").embed();
   }
