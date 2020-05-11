@@ -4,14 +4,15 @@ $(document).ready(setTimeout(function () {
 
     $(".image-slider").slick({
         // dots: true,
-        infinite: false,
+        infinite: true,
         speed: 300,
         slidesToShow: 4,
-        slidesToScroll: 4,
+        slidesToScroll: 1,
         autoplay: true,
         focusOnSelect: true,         
         pauseOnHover: true, 
         useCSS: true, 
+        centerMode: true, 
         responsive: [
           {
             breakpoint: 1024,
