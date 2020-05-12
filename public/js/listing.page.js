@@ -296,7 +296,7 @@ $(document).ready(function() {
                        // src
                        thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
-                       thisImage.style.padding = "1rem 0 0 1rem";
+                      //  thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
                        // class name
                        thisImage.className = "ui image carousel-images";
@@ -427,7 +427,7 @@ $(document).ready(function() {
                        // src
                        thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
-                       thisImage.style.padding = "1rem 0 0 1rem";
+                      //  thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
                        // class name
                        thisImage.className = "ui image carousel-images";
@@ -628,7 +628,7 @@ $(document).ready(function() {
                          }
                        }
                      } else {
-                       let vidId = listing.youtube.split('?')[1]
+                       let vidId = listing.youtube.split('v=')[1]; 
                        console.log(vidId);
                        $("#youtube-col").append(
                          `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}"  ></div>`
@@ -653,7 +653,7 @@ const images = await filteredImg.map(image => {
     // src
     thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
     // margin and padding
-    thisImage.style.padding = "1rem 0 0 1rem";
+    // thisImage.style.padding = "1rem 0 0 1rem";
     thisImage.style.margin = "auto 0 0 0";
     // class name
     thisImage.className = "ui image carousel-images";
@@ -881,10 +881,12 @@ if (listing.youtube) {
       }
     }
   } else {
-    let vidId = listing.youtube.split('=')[1]
+    let vidId = listing.youtube.split('v=')[1]; 
+    console.log(listing.youtube)
     console.log(vidId);
+
     $("#youtube-col").append(
-      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None"  ></div>`
+      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None;Secure"  ></div>`
     );
     $("#youtube-embed").embed();
   }

@@ -1580,8 +1580,8 @@ body {
 }
 
 .cat-images {
-  width:  225px;
-  height: 150px;
+  width: 225px;
+  height: 175px;
   background-size: cover;
   box-shadow:
   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
@@ -1592,7 +1592,6 @@ body {
   0 100px 80px rgba(0, 0, 0, 0.12)
 ;
   border-radius: 5px;
-
 }
 .hover-container {
   display: inline-block;
@@ -1601,39 +1600,44 @@ body {
 }
 
 .image {
-  opacity: 1;
   display: block;
   width: 100%;
   height: auto;
   transition: .5s ease;
-  backface-visibility: hidden;
+  /* backface-visibility: hidden; */
 }
 
 .hover-middle {
-  transition: .5s ease;
-  opacity: 0;
+  /* transition: .5s ease; */
+  background:rgba(60, 60, 60, 0.4);
   position: absolute;
-  top: 50%;
+  width: 100%;
+  /* top: 75%; */
+  bottom: 0px;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
   text-align: center;
+
 }
 
-.hover-container:hover .image {
+/* .hover-container:hover .image {
   opacity: 0.3;
 }
 
 .hover-container:hover .hover-middle {
   opacity: 1;
-}
+} */
 
 .hover-text {
-  background-color: #1f7a8c;
+  font-family: 'Raleway';
+  font-weight: 600;
   color: white;
-  font-size: 16px;
-  padding: 16px 32px;
+  font-size: 18px;
+  padding: 16px;
   cursor: pointer;
+  line-height: 1em;
+  opacity: 1;
 }
 
 .hover-text:hover {
@@ -1642,6 +1646,21 @@ body {
 
 .highlight-text {
   color: #ff6600;
+}
+
+
+@media only screen and (min-width: 1250px) {
+  .cat-images {
+    width: 250px;
+    height: 175px;
+  }
+}
+
+@media only screen and (min-width: 1550px) {
+  .cat-images {
+    width: 300px;
+    height: 225px;
+  }
 }
 
 @media only screen and (max-width: 600px) {

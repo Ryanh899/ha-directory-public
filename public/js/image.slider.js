@@ -8,7 +8,7 @@ $(document).ready(setTimeout(function () {
         speed: 300,
         slidesToShow: 4,
         slidesToScroll: 1,
-        autoplay: true,
+        // autoplay: true,
         focusOnSelect: true,         
         pauseOnHover: true, 
         useCSS: true, 
