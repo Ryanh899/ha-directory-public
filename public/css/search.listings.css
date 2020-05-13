@@ -469,6 +469,10 @@
     border-radius: 0 4px 4px 0;
   }
 
+  .ui-autocomplete {
+    background: #f9f9f9;
+  }
+
   @media only screen and (max-width: 600px) {
 
 

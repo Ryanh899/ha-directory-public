@@ -478,8 +478,8 @@ async function drawMap(geoPos, city) {
 
   allListings = []; 
     
-  let search = sessionStorage.getItem("searchQuery");
-  const logoSearch = sessionStorage.getItem('logoSearch')
+  let search = sessionStorage.getItem("searchQuery"); 
+  const logoSearch = sessionStorage.getItem('logoSearch'); 
 
   let category = "";
   let association = ""; 
@@ -491,7 +491,112 @@ async function drawMap(geoPos, city) {
     }
   });
 
-  if (category === "" && !logoSearch) {
+  if ( category !== "" ) {
+    let newSearch = category.replace(/\//g, '+');
+    console.log(newSearch)
+    myAxios
+      .get(
+        API_URL +
+          "search/category/" +
+          newSearch +
+          "/" +
+          location.coords.latitude + "+" + location.coords.longitude + '/' + distance
+      )
+      .then(response => {
+        allListings = response.data
+        let searchAppend = ''
+        !category ? searchAppend = sessionStorage.getItem('logoSearch') : searchAppend = search
+        $('input.request').val(searchAppend)
+        console.log(response)
+        console.log(search)
+        if (response.data.length === 0 || response.status === 304) {
+          $("#listings-column")
+              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
+          $("#listings-column").append(
+            `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
+          );
+          $(loader).fadeOut();
+          $(page).fadeIn();
+          if (sessionStorage.getItem('location')) {
+            $('#location').attr('placeholder', sessionStorage.getItem('location'))
+            drawMap(null, sessionStorage.getItem('location'))
+          } else {
+            drawMap(location)
+          }
+        } else {
+          $("#listings-column")
+              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
+          response.data.forEach(listing => {
+            $("#listings-column")
+              .append(`<div
+              style="margin-bottom: 1rem; background: #f8f8f8"
+              class="ui grid segment listingItem-search"
+              id="list-item"
+            >
+              <div style="padding: 1rem; padding-right: 0px;" class="row">
+                <div  class="five wide middle aligned column">
+                  <div class="ui image" >
+                      <img
+                      class="ui rounded image"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                    />
+                  </div>
+                </div>
+                <div class="eleven wide column">
+                  <div class="ui grid">
+                      <div
+                      style="padding: 1rem 0rem 0rem .5rem;"
+                      class="ten wide column"
+                    >
+                      <a href="#"  id="${listing.id}" class="listingTitle-search">
+                        ${listing.business_title} <i class="small check circle icon" style="color: #1f7a8c;" ></i>
+                      </a>
+                      <p class="listingSubtitle-search">
+                        ${listing.category || "" }
+                      </p>
+                      
+                    </div>
+                    <div
+                    class="six wide computer only column"
+                  >
+                    <p class="listing-info-text">
+                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone || "999-999-9999"}
+                    </p>
+                    <p class="listing-info-text">
+                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city || listing.full_address}
+                    </p>
+                    <!-- <button style="margin-top: 1rem; background: #1f7a8c; color: white; margin-right: 1.5rem;" class="ui right floated button">Preview</button> -->
+                  </div>
+                  
+                  <div class="fourteen wide column">
+                    <p style="margin-top: 1rem;" id="listing-tagline-search">
+                      ${listing.tagline} 
+                    </p>
+                  </div>
+                  </div>
+                  </div>
+                </div>
+            </div>`);
+          });
+          
+          response.data.forEach(item => {
+            markerInfo.push(item);
+          });
+          if (sessionStorage.getItem('location')) {
+            $('#location').attr('placeholder', sessionStorage.getItem('location'))
+            drawMap(null, sessionStorage.getItem('location'))
+          } else {
+            drawMap(location)
+          }
+        }
+      })
+      .catch(err => {
+        console.log(err);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  } else if ( search && !logoSearch) {
     myAxios
       .get(
         API_URL + "search/" + search + "/" + location.coords.latitude + "+" + location.coords.longitude + '/' + distance
@@ -695,110 +800,7 @@ async function drawMap(geoPos, city) {
         console.log(err);
       });
   } else {
-    let newSearch = category.replace(/\//g, '+');
-    console.log(newSearch)
-    myAxios
-      .get(
-        API_URL +
-          "search/category/" +
-          newSearch +
-          "/" +
-          location.coords.latitude + "+" + location.coords.longitude + '/' + distance
-      )
-      .then(response => {
-        allListings = response.data
-        let searchAppend = ''
-        !category ? searchAppend = sessionStorage.getItem('logoSearch') : searchAppend = search
-        $('input.request').val(searchAppend)
-        console.log(response)
-        console.log(search)
-        if (response.data.length === 0 || response.status === 304) {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          $("#listings-column").append(
-            `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
-          );
-          $(loader).fadeOut();
-          $(page).fadeIn();
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
-          }
-        } else {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          response.data.forEach(listing => {
-            $("#listings-column")
-              .append(`<div
-              style="margin-bottom: 1rem; background: #f8f8f8"
-              class="ui grid segment listingItem-search"
-              id="list-item"
-            >
-              <div style="padding: 1rem; padding-right: 0px;" class="row">
-                <div  class="five wide middle aligned column">
-                  <div class="ui image" >
-                      <img
-                      class="ui rounded image"
-                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
-                    />
-                  </div>
-                </div>
-                <div class="eleven wide column">
-                  <div class="ui grid">
-                      <div
-                      style="padding: 1rem 0rem 0rem .5rem;"
-                      class="ten wide column"
-                    >
-                      <a href="#"  id="${listing.id}" class="listingTitle-search">
-                        ${listing.business_title} <i class="small check circle icon" style="color: #1f7a8c;" ></i>
-                      </a>
-                      <p class="listingSubtitle-search">
-                        ${listing.category || "" }
-                      </p>
-                      
-                    </div>
-                    <div
-                    class="six wide computer only column"
-                  >
-                    <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone || "999-999-9999"}
-                    </p>
-                    <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city || listing.full_address}
-                    </p>
-                    <!-- <button style="margin-top: 1rem; background: #1f7a8c; color: white; margin-right: 1.5rem;" class="ui right floated button">Preview</button> -->
-                  </div>
-                  
-                  <div class="fourteen wide column">
-                    <p style="margin-top: 1rem;" id="listing-tagline-search">
-                      ${listing.tagline} 
-                    </p>
-                  </div>
-                  </div>
-                  </div>
-                </div>
-            </div>`);
-          });
-          
-          response.data.forEach(item => {
-            markerInfo.push(item);
-          });
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
-          }
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-      .catch(err => {
-        console.log(err);
-      });
+    window.location.assign('index.html')
   }
 }
 
@@ -965,6 +967,5 @@ searchListings()
     sessionStorage.setItem("currentListing", id);
     window.location.assign("listing.html");
   });
-
 
 });

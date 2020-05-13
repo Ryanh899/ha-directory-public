@@ -85,8 +85,17 @@ $("body").on("click", "#ishrs-expand", function() {
   
   $("body").on("click", ".logo-click", function() {
     
-    console.log('clicked')
+    console.log('clicked'); 
+    let clicked = $(this).attr('id'); 
+    if (clicked !== 'hair-club') {
     sessionStorage.setItem("lastLocation", "index");
     sessionStorage.setItem("logoSearch", $(this).attr('id'));
     window.location.assign("search.listings.html");
+    } else {
+      sessionStorage.removeItem('logoSearch'); 
+      sessionStorage.setItem("lastLocation", "index");
+      sessionStorage.setItem("searchQuery", 'Hair Club');
+      window.location.assign("search.listings.html");
+    }
+
   });

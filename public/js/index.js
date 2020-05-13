@@ -285,6 +285,8 @@ $("body").on("click", "a#search-button", async function() {
   if ( location !== '' ) {
     await showPosition(null, location); 
     sessionStorage.setItem('location', location);
+  } else {
+    sessionStorage.removeItem('location')
   }
   // else set search, use current location already in storage, send to search page
   sessionStorage.setItem("lastLocation", "index");
@@ -328,6 +330,8 @@ $("body").on("click", "button#search-button", async function() {
   if ( location !== '' ) {
     await showPosition(null, location); 
     sessionStorage.setItem('location', location);
+  } else {
+    sessionStorage.removeItem('location'); 
   }
   // else set search, use current location already in storage, send to search page
   sessionStorage.setItem("lastLocation", "index");
