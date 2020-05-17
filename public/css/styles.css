@@ -698,11 +698,10 @@ body {
   padding-right: 2rem;
 }
 
-/* #step-1-col-l {
+#step-1-col-l {
   background: white;
-  padding-top: 6rem;
-  padding-bottom: 6rem;
-} */
+  padding-left: 5rem;
+}
 
 #step-1-col-b {
   /* padding: .5rem;
@@ -768,6 +767,7 @@ body {
 #step-1-content {
   line-height: 1.85em;
   font-size: 22px;
+  margin-left: 2rem;
 }
 
 #step-1-list {
@@ -777,7 +777,7 @@ body {
 
 /* step 2  */
 #step-2 {
-  padding: 5rem 2rem 5rem 2rem;
+  padding: 5rem 10rem 5rem 2rem;
   background: #f9f9f9;
 }
 
@@ -815,25 +815,26 @@ body {
   text-align: left;
   color: #696969;
   margin-bottom: 0rem;
-  margin-left: 2.5rem;
 }
 
 #step-2-content {
   line-height: 1.85em;
   font-size: 22px;
+  margin-left: 5rem;
 }
 
 
 #step-3 {
   padding-top: 5rem;
-  padding-bottom: 2rem;
+  padding-bottom: 5rem;
   padding-right: 2rem;
+  padding-left: 2rem;
   background: white;
 }
 
 #step-3-col-l {
-  /* padding-top: 5rem; */
   padding-bottom: 2.5rem;
+  padding-left: 5rem;
 }
 
 
@@ -850,7 +851,8 @@ body {
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
   0 100px 80px rgba(0, 0, 0, 0.12)
 ;
-
+  height: 50vh;
+  width: auto;
   /* margin: 100px auto; */
   /* background: white; */
   /* border-radius: 5px; */
@@ -892,7 +894,7 @@ body {
 
 /* step 4  */
 #step-4 {
-  padding: 5rem 2rem 5rem 2rem;
+  padding: 5rem 10rem 5rem 2rem;
   background: #f9f9f9;
 }
 
@@ -903,7 +905,7 @@ body {
 
 #step-4-col-b {
   background: #f9f9f9;
-
+  
 }
 
 #step-4-img {
@@ -930,12 +932,12 @@ body {
   text-align: left;
   color: #696969;
   margin-bottom: 0rem;
-  margin-left: 2.5rem;
 }
 
 #step-4-content {
   line-height: 1.85em;
   font-size: 22px;
+  margin-left: 5rem;
 }
 
 #listing-demo {
@@ -1209,10 +1211,10 @@ body {
   cursor: pointer;
 }
 
-/* #search-appendButtons {
-  padding-right: 3rem;
-  margin-left: 3rem;
-} */
+#search-appendButtons {
+  margin-bottom: 0px;
+  width: 450px
+}
 
 #client-dropdown {
   height: 100%;
@@ -1772,6 +1774,68 @@ body {
     -ms-transform: rotate(0deg);
     -o-transform: rotate(0deg);
     transform: rotate(0deg);
+  }
+
+  #step-1 {
+    padding: 1rem;
+  }
+
+  #step-1-title {
+    text-align: center;
+  }
+
+  #step-1-col-l {
+    padding: 1rem;
+    width: 100%;
+  }
+
+  #step-1-content {
+    margin-left: 0rem;
+  }
+
+  #step-2 {
+    padding: 1rem;
+
+  }
+
+  #step-2-title {
+    text-align: center;
+  }
+
+  #step-2-content {
+    margin-left: 0rem;
+  }
+
+  #step-3 {
+    padding: 1rem;
+  }
+
+  #step-3-col-l {
+    padding: 0rem;
+  }
+
+  #step-3-title {
+    text-align: center;
+  }
+
+  #step-4 {
+    padding: 1rem;
+  }
+
+  #step-4-content {
+    margin-left: 0rem;
+  }
+
+  #category-section {
+    padding: 1rem;
+  }
+
+  #problems-title {
+    text-align: center;
+  }
+
+  #problems-text {
+    text-align: center;
   }
 }
 
