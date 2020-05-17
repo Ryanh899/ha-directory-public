@@ -1,6 +1,6 @@
 var myAxios = axios.create({
   headers: {
-    Authorization: "Bearer " + localStorage.getItem("token")
+    Authorization: "Bearer " + sessionStorage.getItem("token")
   }
 });
 myAxios.interceptors.response.use(
@@ -17,7 +17,7 @@ myAxios.interceptors.response.use(
 );
 var authHelper = {
   isLoggedIn() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       var userData = this.parseToken(token);
       var expirationDate = new Date(userData.exp * 1000);
@@ -33,7 +33,7 @@ var authHelper = {
     }
   },
   logOut() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 };
 // ec2 api url 

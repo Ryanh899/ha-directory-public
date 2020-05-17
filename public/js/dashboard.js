@@ -6,7 +6,7 @@ const AUTH_URL = "https://hadirectoryapi.com/auth/";
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
 var myAxios = axios.create({
   headers: {
-    Authorization: "Bearer " + localStorage.getItem("token")
+    Authorization: "Bearer " + sessionStorage.getItem("token")
   }
 });
 myAxios.interceptors.response.use(
@@ -36,7 +36,7 @@ const categories = [
 
 var authHelper = {
   isLoggedIn() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       var userData = this.parseToken(token);
       var expirationDate = new Date(userData.exp * 1000);
@@ -54,7 +54,7 @@ var authHelper = {
     return JSON.parse(window.atob(token.split(".")[1]));
   },
   logOut(path = "./sign-in.html") {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     window.location.assign(path);
   }
 };

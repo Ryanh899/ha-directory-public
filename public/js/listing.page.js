@@ -36,7 +36,7 @@ var authHelper = {
     }
   },
   logOut() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 };
 
