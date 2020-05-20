@@ -10,12 +10,12 @@ var myAxios = axios.create({
     function(error) {
       if (error.response.status === 400) {
         console.log(error.response)
-        alert(error.response)
+        return window.location.assign('error.html')
       } else if (error.response.status === 401) {
         console.log(error.response)
-        return error
+        return window.location.assign('error.html')
       } else {
-        return Promise.reject(error);
+        return window.location.assign('error.html')
       }
     }
   );

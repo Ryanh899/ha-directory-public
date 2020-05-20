@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>International Hair Authority</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.css"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/fomantic-ui@2.7.8/dist/semantic.min.js"></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.1/axios.js"
+      integrity="sha256-J6UlS3kpnhiSiNQ9lGoV9Q94ZpIPff3UZcR0dDwIT6g="
+      crossorigin="anonymous"
+    ></script>
+    <link
+      href="https://fonts.googleapis.com/css?family=Lato:100,300,400|Raleway:100,400,500,700,800,900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css"
+    />
+    <link rel="stylesheet" type="text/css" href="./css/styles.css" />
+  </head>
+  <body>
+      
+    <div class="ui grid" id="page-container">
+        <div style="display: none; min-height: 100%;" id="billing-loader-div">
+            <div class="ui active inverted dimmer">
+              <div class="ui text loader">Loading</div>
+            </div>
+            <p></p>
+        </div>
+        <div id="error-modal" class="ui modal">
+            <i class="close icon"></i>
+            <div id="error-header" class="header modalHeader"></div>
+              <div id="error-description" class="description modalDescription"></div>
+            <div class="fluid actions">
+                <a href="index.html"><div style="width: 48%;" class="ui button modal-cancel modalDescription"> Cancel</div></a>
+                <a href="sign-in.html"><div style="width: 48%;" class="ui button modal-signIn modalDescription">Sign In</div></a> 
+            </div>
+          </div>
+          <!-- top menu  -->
+          <div class="row" id="top-menu-row">
+              <div class="ui grid" id="landing-grid">
+                <div id="back-column" class="one wide column">
+                 <a href="index.html"> 
+                    <div id="back-button">
+                        <p id="back-p" class="top-button" >
+                        <i class="left arrow icon"></i>
+                        </p>
+                  </div>
+                </a>
+                </div>  
+                <div style="padding: .5rem;" class="one wide computer only column">
+                  <img
+                    style="margin-left: 1rem; padding: 0px;"
+                    id="ha-logo-image"
+                    src="./images/logo-symbol-01.png"
+                  />
+                </div>
+                <div style="padding: 1rem;" class="six wide computer six wide mobile middle aligned column">
+                  <p id="ha-title">Hair Authority Directory</p>
+                </div>
+              </div>
+            </div>
+            <div class="sixteen wide center aligned middle aligned column">
+                <p style="font-size: 45px; font-family: Raleway; color: #1f7a8c; font-weight: 500; margin-bottom: .5rem; margin-top: 10rem;" >We're very sorry</p>
+                <p style="font-size: 25px; font-family: Raleway; color: #696969; font-weight: 500;" >Your request could not be processed at this time, please try again later.</p>
+            <a href="index.html">
+                <button style="background: #1f7a8c; color: white;" class="ui big button" >Return home</button>
+            </a>
+            </div>
+            <div style="position: absolute; bottom: 0px;" class="row" id="footer-row">
+                <div class="sixteen wide center aligned column" id="copyright-column">
+                  <p id="copyright">
+                    Copyright © 2019 Hair Authority Directory
+                  </p>
+                </div>
+                <div class="sixteen wide center aligned column" id="icons">
+                  <i class="large google icon header-icon-color"></i>
+                  <i class="large facebook icon header-icon-color"></i>
+                  <i class="large twitter square icon header-icon-color"></i>
+                  <i class="large instagram icon header-icon-color"></i>
+                </div>
+              </div>
+    </div>
+
+  </body>
+</html>

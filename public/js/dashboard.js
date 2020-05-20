@@ -615,7 +615,12 @@ let images = [];
     const urlAndKey = await (
       await fetch(
         `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+      , {
+        method: 'GET',
+        headers: {
+          'Authorization': "Bearer " + sessionStorage.getItem("token")
+      }
+      })
     ).json();
     console.log(urlAndKey);
     console.log('changes made')
@@ -654,7 +659,12 @@ let images = [];
     const urlAndKey = await (
       await fetch(
         `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+        , {
+          method: 'GET',
+          headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem("token")
+        }
+        })
     ).json();
     console.log(urlAndKey);
     await fetch(urlAndKey.url, {
@@ -1283,7 +1293,12 @@ $(document).on("click", "button.other-remove", function(e) {
               const urlAndKey = await (
                 await fetch(
                   `https://hadirectoryapi.com/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
-                )
+                  , {
+                    method: 'GET',
+                    headers: {
+                      'Authorization': "Bearer " + sessionStorage.getItem("token")
+                  }
+                  })
               ).json();
               console.log(urlAndKey);
               await fetch(urlAndKey.url, {

@@ -690,7 +690,17 @@ if (sessionStorage.getItem('adminSearchQuery_pending')) {
       // window.location.assign("search.listings.html");
     });
 
+    $('#home').append(`<button id="refresh" class="btn btn-primary">Update Refresh</button>`); 
 
+    $('body').on('click', '#refresh', () => {
+      myAxios.put(API_URL + 'udateRefresh')
+        .then(response => {
+          console.log(response)
+        })
+        .catch(err => {
+          console.log(err)
+        })
+    })
 
 });
 

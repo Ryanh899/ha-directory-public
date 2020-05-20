@@ -923,8 +923,13 @@ $(document).ready(function() {
     const currentUser = authHelper.parseToken(sessionStorage.getItem("token"));
     const urlAndKey = await (
       await fetch(
-        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+        `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`, 
+      {
+        method: 'GET',
+        headers: {
+          'Authorization': "Bearer " + sessionStorage.getItem("token")
+      }
+      })
     ).json();
     console.log(urlAndKey);
     await fetch(urlAndKey.url, {
@@ -963,7 +968,12 @@ $(document).ready(function() {
     const urlAndKey = await (
       await fetch(
         `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+      , {
+        method: 'GET',
+        headers: {
+          'Authorization': "Bearer " + sessionStorage.getItem("token")
+      }
+      })
     ).json();
     console.log(urlAndKey);
     await fetch(urlAndKey.url, {
