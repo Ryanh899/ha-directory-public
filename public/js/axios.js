@@ -10,9 +10,9 @@ var myAxios = axios.create({
     },
     function(error) {
       if (error.response.status === 401) {
-        // return authHelper.logOut("./sign-in.html");
+        return window.location.assign('error.html')
       } else {
-        return Promise.reject(error);
+        return window.location.assign('error.html')
       }
     }
   );

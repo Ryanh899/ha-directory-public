@@ -4,23 +4,7 @@ const API_URL = "https://hadirectoryapi.com/api/";
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
-var myAxios = axios.create({
-  headers: {
-    Authorization: "Bearer " + sessionStorage.getItem("token")
-  }
-});
-myAxios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    if (error.response.status === 401) {
-      return authHelper.logOut("./sign-in.html");
-    } else {
-      return Promise.reject(error);
-    }
-  }
-);
+
 
 const categories = [
   { title: "Dermatologist" },

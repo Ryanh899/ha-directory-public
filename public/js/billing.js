@@ -1,24 +1,4 @@
-var myAxios = axios.create({
-    headers: {
-      Authorization: "Bearer " + sessionStorage.getItem("token")
-    }
-  });
-  myAxios.interceptors.response.use(
-    function(response) {
-      return response;
-    },
-    function(error) {
-      if (error.response.status === 400) {
-        console.log(error.response)
-        return window.location.assign('error.html')
-      } else if (error.response.status === 401) {
-        console.log(error.response)
-        return window.location.assign('error.html')
-      } else {
-        return window.location.assign('error.html')
-      }
-    }
-  );
+
   var authHelper = {
     isLoggedIn() {
       const token = sessionStorage.getItem("token");
