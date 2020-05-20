@@ -573,9 +573,11 @@ async function drawMap(geoPos, city) {
       })
       .catch(err => {
         console.log(err);
+        window.location.assign('error.html')
       })
       .catch(err => {
         console.log(err);
+        window.location.assign('error.html')
       });
   } else if ( search && !logoSearch) {
     myAxios
@@ -675,6 +677,7 @@ async function drawMap(geoPos, city) {
       })
       .catch(err => {
         console.log(err);
+        window.location.assign('error.html')
       });
   } else if ( logoSearch ) {
 
@@ -776,9 +779,11 @@ async function drawMap(geoPos, city) {
       })
       .catch(err => {
         console.log(err);
+        window.location.assign('error.html')
       })
       .catch(err => {
         console.log(err);
+        window.location.assign('error.html')
       });
   } else {
     window.location.assign('index.html')
