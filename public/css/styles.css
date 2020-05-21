@@ -6,6 +6,10 @@ body {
   margin: 0px;
 }
 
+a:hover {
+  color: #3aa7a3;
+}
+
 .h1_bold {
   font-weight: 700;
   font-family: "Raleway";
@@ -134,6 +138,7 @@ body {
   background: white;
   color: #1f7a8c;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 #register-column {
@@ -176,6 +181,7 @@ body {
   display: table-cell;
   color: black;
   padding: 0.5rem;
+  cursor: pointer;
 }
 
 #landing-grid {
@@ -1157,10 +1163,15 @@ body {
   font-family: "Raleway", sans-serif;
   font-weight: 700;
   font-size: 20px;
-  width: 35%;
+  width: 90%;
   padding: 1.5rem;
   background: black;
   text-align: center;
+  cursor: pointer;
+}
+
+.bus-box-button:hover {
+  background: #3aa7a3;
 }
 
 #menu-col {
@@ -1742,9 +1753,7 @@ body {
     padding: 1rem;
   }
 
-  .bus-box-button {
-    width: 100%;
-  }
+
 
   #about-row {
     padding: 2rem;

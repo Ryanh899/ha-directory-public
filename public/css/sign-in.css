@@ -213,6 +213,24 @@ body {
     color: black;
     padding: 0.5rem;
   }
+
+  #existing-account {
+    cursor: pointer;
+  }
+
+  #submit-register {
+    cursor: pointer;
+  }
+  
+  #submit-register:hover {
+    background: #2ca6a4;
+  }
+
+  #no-account {
+    cursor: pointer;
+  }
+
+
   @media only screen and (max-width: 600px) {
 
     .ha_button {

@@ -73,7 +73,10 @@
               <!-- first row  -->
                 <div class="field">
                   <label id="signIn-text">Email</label>
-                  <input id="email" type="email" placeholder="Full Name" />
+                  <input id="email" type="email"  />
+                  <div id="error-label" style="display: none;" class="ui top pointing red basic label">
+                      Email or password are incorrect
+                  </div>
                 </div>
 
                 <div class="field">
@@ -81,7 +84,6 @@
                   <input
                     id="password"
                     type="password"
-                    placeholder="Full Name"
                   />
                 </div>
                 <div id="submit-register" class="ha_button">Submit</div>

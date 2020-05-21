@@ -47,9 +47,7 @@ const ADMIN_URL = "https://hadirectoryapi.com/admin/";
                 }
             })
             .catch(err => {
-                alert('email or password not found')
-                // window.location.assign('register.html')
-                console.log(err); 
+                $('#error-label').css('display', '')
             })
     })
 

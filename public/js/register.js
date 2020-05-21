@@ -104,7 +104,7 @@ $(document).ready(function() {
           window.location.assign("sign-in.html");
         })
         .catch(err => {
-          alert("That email has been taken");
+          $('#error-email').css('display', ''); 
         });
     }
   });

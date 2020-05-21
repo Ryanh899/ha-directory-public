@@ -255,7 +255,7 @@ const ADMIN_URL = "https://hadirectoryapi.com/admin/";
   //   console.log(env)
   //   API_URL = "ec2-54-90-69-186.compute-1.amazonaws.com/api/";
   // } else {
-  //   API_URL = "http://localhost:3000/api/";
+
   // }
 
 
@@ -272,7 +272,6 @@ if (sessionStorage.getItem('current-lat') && sessionStorage.getItem('current-lng
 let markerInfo = [];
 
 async function drawMap(geoPos, city) {
-  markerInfo = []; 
     let geolocate; 
     if (geoPos) {
       geolocate = new google.maps.LatLng(
@@ -325,6 +324,7 @@ async function drawMap(geoPos, city) {
           infowindow.open(map, marker);
         });
       });
+      markerInfo = []; 
     }
     
     $(loader).fadeOut();
