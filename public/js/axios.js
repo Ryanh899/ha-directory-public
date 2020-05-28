@@ -9,10 +9,11 @@ var myAxios = axios.create({
       return response;
     },
     function(error) {
-      if (error.response.status === 401) {
-        return window.location.assign('error.html')
-      } else {
-        return window.location.assign('error.html')
-      }
+      console.log(error)
+      // if (error.response.status === 401) {
+      //   return window.location.assign('error.html')
+      // } else {
+      //   return window.location.assign('error.html')
+      // }
     }
   );
