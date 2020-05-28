@@ -247,7 +247,8 @@ $(document).ready(function() {
   const page = document.querySelector("div#page-container");
   const loader = document.querySelector("div#loader-div");
 // ec2 api url 
-const API_URL = "https://hadirectoryapi.com/api/"; 
+// const API_URL = "https://hadirectoryapi.com/api/"; 
+const API_URL = "http://localhost:3000/api/"; 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 

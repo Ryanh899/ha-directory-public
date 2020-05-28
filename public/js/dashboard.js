@@ -43,6 +43,10 @@ var authHelper = {
   }
 };
 
+function showUpdateButton (elem) {
+  $(`${elem}`).append(`<div style="display: none;" class="ui green button update-router">Update Listing</div>`)
+}
+
 function titleCase(str) {
   str = str.toLowerCase().split(" ");
   for (var i = 0; i < str.length; i++) {
@@ -201,7 +205,7 @@ function getMenuParams (listings) {
 function tierControl (plan_code) {
   // light plan
   // EXCLUDES: youtube, tagline, social media, faq, hours
-  if (plan_code === 'd2f4f1f0-1ad5-4c3a-912d-6646a5a46d08') {
+  if (plan_code === 'light-access') {
     console.log('light plan')
       $('#tagline').attr('disabled', true)
       $('#tagline-upgrade').html(`<p class="upgrade-text"><a class="updateSub" >Upgrade</a> your subscription to display</p>`)
@@ -215,7 +219,7 @@ function tierControl (plan_code) {
       $('input.faq').attr('disabled',true); 
       $('textarea.answer').attr('disabled', true); 
       $('div.faq-upgrade').html(`<p class="upgrade-text"><a class="updateSub" >Upgrade</a> your subscription to display</p>`)
-  } else if (plan_code === 'ea78d785-2a2c-4b74-b578-fab3509b669c') {
+  } else if (plan_code === 'standard-access') {
     console.log('standard plan')
       $('input.hours').attr('disabled', true); 
       $('div.hours-upgrade').html('<p class="upgrade-text"><a class="updateSub">Upgrade</a> your subscription to display</p>')
@@ -223,7 +227,7 @@ function tierControl (plan_code) {
       $('input.faq').attr('disabled',true); 
       $('textarea.answer').attr('disabled', true); 
       $('div.faq-upgrade').html(`<p class="upgrade-text"><a class="updateSub" >Upgrade</a> your subscription to display</p>`)
-  } else if (plan_code === '2528891f-8535-41dc-b07e-952b25113bd0' || plan_code === 'free-trial') {
+  } else if (plan_code === 'premium-access' || plan_code === 'free-trial') {
     console.log('full access')
     $('.upgrade-text').css('display', 'none'); 
     $('input.faq').attr('disabled', false); 
@@ -1126,7 +1130,7 @@ $(document).on("click", "button.other-remove", function(e) {
         .trim();
       console.log(updates);
     }
-
+    showUpdateButton(e.target); 
     $("#submit-button").show();
   });
 
@@ -1136,7 +1140,7 @@ $(document).on("click", "button.other-remove", function(e) {
       updates.business_description.html = quill.root.innerHTML 
         
       console.log(updates);
-
+      showUpdateButton(e.target); 
     $("#description-submit-button").show();
   });
 
@@ -1148,7 +1152,7 @@ $(document).on("click", "button.other-remove", function(e) {
         .trim();
       console.log(updates);
     }
-
+    showUpdateButton(e.target); 
     $("#submit-button").show();
   });
 
@@ -1160,7 +1164,7 @@ $(document).on("click", "button.other-remove", function(e) {
         .trim();
       console.log(updates);
     }
-
+    showUpdateButton(e.target); 
     $("#submit-button").show();
   });
 
@@ -1172,7 +1176,7 @@ $(document).on("click", "button.other-remove", function(e) {
         .trim();
       console.log(updates);
     }
-
+    showUpdateButton(e.target); 
     $("#submit-button").show();
   });
 
@@ -1201,6 +1205,10 @@ $(document).on("click", "button.other-remove", function(e) {
       const number = id.split('')[3]; 
 
       
+  })
+
+  $('body').on('click', 'update-router', function () {
+    $('#submit-button').click(); 
   })
 
   // on update click

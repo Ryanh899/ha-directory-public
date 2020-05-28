@@ -26,7 +26,9 @@ var authHelper = {
 
 // API URL
 // ec2 api url 
-const API_URL = "https://hadirectoryapi.com/api/"; 
+// const API_URL = "https://hadirectoryapi.com/api/"; 
+const API_URL = "http://localhost:3000/api/"; 
+
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
@@ -150,7 +152,7 @@ $(document).ready(function() {
       // reveal page and hide loader
       $("#images").css("dislplay", "");
       $(loader).css("display", "none");
-      $(page).fadeIn(250)
+      $(page).fadeIn(550)
     }
     // if the address exists
     else if (sessionStorage.getItem("listing-address") !== "null") {
@@ -186,7 +188,7 @@ $(document).ready(function() {
           // reveal page and hide loader
           $("#images").css("dislplay", "");
           $(loader).css("display", "none");
-          $(page).fadeIn(250)
+          $(page).fadeIn(550)
         } else {
           console.log(
             "Geocode was not successful for the following reason: " + status
@@ -221,7 +223,7 @@ $(document).ready(function() {
       // reveal page and hide loader
       $("#images").css("dislplay", "");
       $(loader).css("display", "none");
-      $(page).fadeIn(250)
+      $(page).fadeIn(550)
     }
   }
 
