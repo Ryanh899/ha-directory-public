@@ -21,3 +21,13 @@
 #email {
     padding: 0px;
 }
+
+a:hover {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#submit-register:hover {
+    cursor: pointer;
+}
+

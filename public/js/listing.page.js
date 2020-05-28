@@ -1,26 +1,10 @@
 // axios interceptor and creater
-var myAxios = axios.create({
-  headers: {
-    Authorization: "Bearer " + sessionStorage.getItem("token")
-  }
-});
-myAxios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    if (error.response.status === 401) {
-      return authHelper.logOut("./sign-in.html");
-    } else {
-      return Promise.reject(error);
-    }
-  }
-);
+
 
 //auth helper functions
 var authHelper = {
   isLoggedIn() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       var userData = this.parseToken(token);
       var expirationDate = new Date(userData.exp * 1000);
@@ -36,13 +20,15 @@ var authHelper = {
     }
   },
   logOut() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 };
 
 // API URL
 // ec2 api url 
-const API_URL = "https://hadirectoryapi.com/api/"; 
+// const API_URL = "https://hadirectoryapi.com/api/"; 
+const API_URL = "http://localhost:3000/api/"; 
+
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
@@ -166,7 +152,7 @@ $(document).ready(function() {
       // reveal page and hide loader
       $("#images").css("dislplay", "");
       $(loader).css("display", "none");
-      $(page).fadeIn(250)
+      $(page).fadeIn(550)
     }
     // if the address exists
     else if (sessionStorage.getItem("listing-address") !== "null") {
@@ -202,7 +188,7 @@ $(document).ready(function() {
           // reveal page and hide loader
           $("#images").css("dislplay", "");
           $(loader).css("display", "none");
-          $(page).fadeIn(250)
+          $(page).fadeIn(550)
         } else {
           console.log(
             "Geocode was not successful for the following reason: " + status
@@ -237,7 +223,7 @@ $(document).ready(function() {
       // reveal page and hide loader
       $("#images").css("dislplay", "");
       $(loader).css("display", "none");
-      $(page).fadeIn(250)
+      $(page).fadeIn(550)
     }
   }
 
@@ -296,7 +282,7 @@ $(document).ready(function() {
                        // src
                        thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
-                       thisImage.style.padding = "1rem 0 0 1rem";
+                      //  thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
                        // class name
                        thisImage.className = "ui image carousel-images";
@@ -427,7 +413,7 @@ $(document).ready(function() {
                        // src
                        thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
                        // margin and padding
-                       thisImage.style.padding = "1rem 0 0 1rem";
+                      //  thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
                        // class name
                        thisImage.className = "ui image carousel-images";
@@ -628,7 +614,7 @@ $(document).ready(function() {
                          }
                        }
                      } else {
-                       let vidId = listing.youtube.split('?')[1]
+                       let vidId = listing.youtube.split('v=')[1]; 
                        console.log(vidId);
                        $("#youtube-col").append(
                          `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}"  ></div>`
@@ -653,7 +639,7 @@ const images = await filteredImg.map(image => {
     // src
     thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
     // margin and padding
-    thisImage.style.padding = "1rem 0 0 1rem";
+    // thisImage.style.padding = "1rem 0 0 1rem";
     thisImage.style.margin = "auto 0 0 0";
     // class name
     thisImage.className = "ui image carousel-images";
@@ -881,10 +867,12 @@ if (listing.youtube) {
       }
     }
   } else {
-    let vidId = listing.youtube.split('=')[1]
+    let vidId = listing.youtube.split('v=')[1]; 
+    console.log(listing.youtube)
     console.log(vidId);
+
     $("#youtube-col").append(
-      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None"  ></div>`
+      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None;Secure"  ></div>`
     );
     $("#youtube-embed").embed();
   }

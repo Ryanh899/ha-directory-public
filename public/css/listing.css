@@ -319,7 +319,7 @@ a:hover {
 .slick-initialized .slick-track {
     display: flex;
     align-items: center;
-    max-height: auto;
+    max-height: 55vh;
 }
 
 #direction-link {
@@ -427,5 +427,9 @@ hr.style14 {
 #image-content {
   height: 100%;
   width: auto;
+}
+
+.slick-slide {
+  cursor: pointer;
 }
 

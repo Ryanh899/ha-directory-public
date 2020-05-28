@@ -94,6 +94,9 @@
                   <div class="field">
                       <label id="signIn-text">Email</label>
                       <input name="email" style="padding: 1rem;" id="email" type="email" placeholder="johnsmith@gmail.com" />
+                      <div id="error-email" style="display: none;" class="ui top pointing red basic label">
+                          Email or password are incorrect
+                      </div>
                     </div>
                     <div class="field">
                         <label id="signIn-text">Phone</label>
@@ -121,7 +124,7 @@
         <div class="four wide computer three wide tablet three wide mobile column"></div>
       </div>
     </div>
-
+    <script src="./js/axios.js" ></script>
     <script src="./js/css.js"></script>
     <script src="./js/register.js"></script>
   </body>

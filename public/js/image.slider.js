@@ -8,7 +8,6 @@ $(document).ready(setTimeout(function () {
         speed: 300,
         slidesToShow: 4,
         slidesToScroll: 1,
-        variableWidth: true, 
         autoplay: true,
         focusOnSelect: true,         
         pauseOnHover: true, 

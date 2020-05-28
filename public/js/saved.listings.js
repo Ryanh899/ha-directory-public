@@ -1,23 +1,7 @@
-var myAxios = axios.create({
-  headers: {
-    Authorization: "Bearer " + localStorage.getItem("token")
-  }
-});
-myAxios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    if (error.response.status === 401) {
-      return authHelper.logOut("./sign-in.html");
-    } else {
-      return Promise.reject(error);
-    }
-  }
-);
+
 var authHelper = {
   isLoggedIn() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       var userData = this.parseToken(token);
       var expirationDate = new Date(userData.exp * 1000);
@@ -33,7 +17,7 @@ var authHelper = {
     }
   },
   logOut() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 };
 // ec2 api url 

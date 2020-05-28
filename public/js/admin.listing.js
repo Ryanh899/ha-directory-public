@@ -1,22 +1,7 @@
-// axios interceptor and creater
-var myAxios = axios.create({
-  headers: {
-    Authorization: "Bearer " + localStorage.getItem("token")
-  }
-});
-myAxios.interceptors.response.use(
-  function(response) {
-    return response;
-  },
-  function(error) {
-    console.log(error);
-  }
-);
-
 //auth helper functions
 var authHelper = {
   isLoggedIn() {
-    const token = localStorage.getItem("token");
+    const token = sessionStorage.getItem("token");
     if (token) {
       var userData = this.parseToken(token);
       var expirationDate = new Date(userData.exp * 1000);
@@ -32,7 +17,7 @@ var authHelper = {
     }
   },
   logOut() {
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
   }
 };
 
@@ -441,7 +426,12 @@ function readQlFile(file, imagesArr, quill) {
     const urlAndKey = await (
       await fetch(
         `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+        , {
+          method: 'GET',
+          headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem("token")
+        }
+        })
     ).json();
     console.log(urlAndKey);
     await fetch(urlAndKey.url, {
@@ -481,7 +471,12 @@ function readQlFile(file, imagesArr, quill) {
     const urlAndKey = await (
       await fetch(
         `https://hadirectoryapi.com/api/s3/sign_put?contentType=${file.type}&userId=${currentUser.id}`
-      )
+        , {
+          method: 'GET',
+          headers: {
+            'Authorization': "Bearer " + sessionStorage.getItem("token")
+        }
+        })
     ).json();
     console.log(urlAndKey);
     await fetch(urlAndKey.url, {
@@ -1617,7 +1612,12 @@ function readQlFile(file, imagesArr, quill) {
               const urlAndKey = await (
                 await fetch(
                   `https://hadirectoryapi.com/api/s3/sign_put?contentType=${image.file.type}&userId=${currentUser.id}`
-                )
+                  , {
+                    method: 'GET',
+                    headers: {
+                      'Authorization': "Bearer " + sessionStorage.getItem("token")
+                  }
+                  })
               ).json();
               console.log(urlAndKey);
               await fetch(urlAndKey.url, {
