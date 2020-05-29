@@ -1809,6 +1809,20 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
     padding: 0rem;
   }
 
+  .step-text {
+    margin: 0px;
+  }
+
+  .cta-title {
+    margin-left: 0px;
+
+  }
+
+  .cta-text {
+    margin-left: 0px;
+    
+  }
+
   #step-2-col-b {
     height: auto;
   }
