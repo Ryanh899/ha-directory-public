@@ -135,6 +135,10 @@ a:hover {
   line-height: 1em;
 }
 
+.top-button:hover {
+  background: #696969;
+}
+
 #sign-in {
   text-align: center;
   vertical-align: middle;
@@ -157,6 +161,10 @@ a:hover {
   height: 101%;
   display: table;
   /* width: 100%; */
+}
+
+#listBusiness-button:hover {
+  background: #696966;
 }
 
 #logout-button {
@@ -186,6 +194,10 @@ a:hover {
   color: black;
   padding: 0.5rem;
   cursor: pointer;
+}
+
+#register:hover {
+  background: #696969;
 }
 
 #landing-grid {
@@ -254,7 +266,10 @@ a:hover {
     background-position: center; 
     background-repeat: no-repeat; 
     background-size: cover;   */
-  background: #1F7A8C;
+  /* background: #1F7A8C; 
+  */
+  background: rgb(39,167,193);
+  background: linear-gradient(90deg, rgba(39,167,193,1) 6%, rgba(25,141,164,1) 92%);
   padding-top: 0px;
   padding-bottom: 0px;
 }
@@ -703,8 +718,8 @@ a:hover {
 }
 
 #step-1 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
   padding-right: 2rem;
 }
 
@@ -776,14 +791,19 @@ a:hover {
 
 #step-1-content {
   line-height: 1.85em;
-  font-size: 22px;
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: #696966;
   margin-left: 2rem;
 }
 
 .step-text {
   line-height: 1.85em;
-  font-size: 22px;
-
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: #696966;
 }
 
 #step-1-list {
@@ -793,17 +813,17 @@ a:hover {
 
 /* step 2  */
 #step-2 {
-  padding: 5rem 10rem 5rem 2rem;
-  background: #f9f9f9;
+  padding: 3.5rem 10rem 3.5rem 2rem;
+  background: 		#DCDCDC;
 }
 
 #step-2-col-l {
-  background: #f9f9f9;
+  background: 	#DCDCDC;
 
 }
 
 #step-2-col-b {
-  background: #f9f9f9;
+  background: 	#DCDCDC;
 
 }
 
@@ -838,17 +858,24 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 
 #step-2-content {
   line-height: 1.85em;
-  font-size: 22px;
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: #696966;
   margin-left: 5rem;
 }
 
 
 #step-3 {
-  padding-top: 5rem;
-  padding-bottom: 5rem;
+  padding-top: 3.5rem;
+  padding-bottom: 3.5rem;
   padding-right: 2rem;
   padding-left: 2rem;
   background: white;
+}
+
+#register-link:hover {
+  text-decoration: underline;
 }
 
 #step-3-col-l {
@@ -902,7 +929,10 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 
 #step-3-content {
   line-height: 1.85em;
-  font-size: 22px;
+  font-size: 16px;
+  font-family: 'Raleway';
+  font-weight: 400;
+  color: #696966;
 }
 
 #step-3-list {
@@ -1126,7 +1156,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 #why-title {
   font-family: 'Libre Baskerville';
   font-weight: 700;
-  font-size: 45px;
+  font-size: 35px;
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
 }
@@ -1134,8 +1164,9 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 .why-text {
   font-family: 'Source Sans Pro';
   font-weight: 300;
-  font-size: 25px;
+  font-size: 18px;
   color: black;
+  
 }
 
 .why-header {
@@ -1173,8 +1204,8 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 
 .cta-header {
   font-family: 'Raleway';
-  font-weight: 700;
-  font-size: 35px;
+  font-weight: 400;
+  font-size: 30px;
   margin-bottom: 1rem;
   color: #696969;
   line-height: 1em;
@@ -1193,7 +1224,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 .cta-text {
   font-family: 'Lato';
   font-weight: 300;
-  font-size: 25px;
+  font-size: 16px;
   color: black;
   line-height: 1.25em;
 }
