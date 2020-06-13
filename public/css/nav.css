@@ -20,10 +20,13 @@
     padding: 0px;
     line-height: 1em;
     cursor: pointer;
+    color: black;
+    padding: 0px;
+    line-height: 1em;
   }
 
   .top-button:hover {
-    background: #3aa7a3;
+    background: #DCDCDC;
   }
 
   #landing-grid {
@@ -167,10 +170,7 @@
     width: 100%;
   }
 /* top button  */
-.top-button {
-    padding: 0px;
-    line-height: 1em;
-  }
+
 
 
 #back-button {

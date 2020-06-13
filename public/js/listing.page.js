@@ -2,7 +2,7 @@
 
 
 //auth helper functions
-var authHelper = {
+  var authHelper = {
   isLoggedIn() {
     const token = sessionStorage.getItem("token");
     if (token) {
@@ -279,8 +279,10 @@ $(document).ready(function() {
                      if (image.image_path !== "false") {
                        // p tag
                        let thisImage = document.createElement("img");
+
+                       let src = image.image_path.split('.')[0]
                        // src
-                       thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
+                       thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${src}-458x425.jpeg`;
                        // margin and padding
                       //  thisImage.style.padding = "1rem 0 0 1rem";
                        thisImage.style.margin = "auto 0 0 0";
@@ -316,11 +318,11 @@ $(document).ready(function() {
                    }
          
                    if (!listing.claimed) {
-                     $('#right-rail').prepend(`<button id="claim-button" style="background: orange; color: white;" class="ui button" >Claim Your Business</button>`)
+                     $('#right-rail').prepend(`<button id="claim-button" style="background: orange; color: white; " class="ui button" >Claim Your Business</button>`)
                    }
          
                      
-                   $('#last-divider').append(`<div class="active section" style="color: black; font-size: 18px; font-family:lato; font-weight: 500;">${listing.business_title}</div>`)
+                   $('#last-divider').append(`<div class="active section" style="color: black; font-size: 18px; font-family:Raleway; font-weight: 400;"> ${listing.business_title}</div>`)
          
                    // prepend title to title section
                    $(titleSection).prepend(
@@ -547,6 +549,14 @@ $(document).ready(function() {
                          </button></a>`
                      );
                    }
+
+                   if (listing.youtube) {
+                    $("#social-media").append(
+                      `<a class="contact-info" href="${listing.youtube}" ><button class="ui circular youtube icon button">
+                          <i class="youtube icon"></i>
+                        </button></a>`
+                    );
+                  }
          
                    // if description append else hide the section
                    if (listing.business_description) {
@@ -564,7 +574,7 @@ $(document).ready(function() {
                      id="youtube-hr"
                      style="padding: 0px;"
                      class="sixteen wide column"
-                   > <hr class="style14"/></div>`);
+                   > </div>`);
                      let ytUrl = listing.youtube.split("/");
          
                      if (ytUrl.some(x => x === "user")) {
@@ -631,11 +641,25 @@ let filteredImg = listing.images.filter(
   x => x.image_path !== "true" && x.image_path !== ""
 );
 
+let smallestHeight = 1000;  
+
 // map images into an arr of dom elements
 const images = await filteredImg.map(image => {
-  if (image.image_path !== "false") {
+  // console.log(image)
+  if (image.image_path !== "false" && !image.featured_image) {
     // p tag
-    let thisImage = document.createElement("img");
+    let thisImage = new Image(); 
+    thisImage.onload = function () {
+      console.log(thisImage.height)
+      if (thisImage.height < smallestHeight && thisImage.height > 320) {
+        smallestHeight = thisImage.height; 
+        console.log(smallestHeight)
+        $('#images-column').css('max-height', smallestHeight + 'px')
+        $('#image-slider-id').css('max-height', smallestHeight + 'px')
+      }
+    }
+    // let src = image.image_path.split('.')[0]; 
+    // console.log(src)
     // src
     thisImage.src = `https://hairauthoritydirectory.s3.amazonaws.com/${image.image_path}`;
     // margin and padding
@@ -643,14 +667,16 @@ const images = await filteredImg.map(image => {
     thisImage.style.margin = "auto 0 0 0";
     // class name
     thisImage.className = "ui image carousel-images";
-
     return thisImage;
+  } else if (image.image_path !== "false" && image.featured_image) {
+
   }
 });
 
 // then filter those images for undefined
 let filteredImgs = images.filter(x => x !== undefined);
 
+console.log(filteredImgs); 
 // create image slider element
 let imageSlider = document.createElement("div");
 // class name
@@ -663,6 +689,9 @@ filteredImgs.forEach(image => {
 });
 // append and hide images
 $("#images").append(imageSlider);
+
+
+
 $("#images").css("dislplay", "none");
 
 // if category prepend to title section
@@ -673,8 +702,13 @@ if (listing.category !== null) {
 }
 
 if (!listing.claimed) {
-  $('#right-rail').prepend(`<button id="claim-button" style="background: orange; color: white;" class="ui button" >Claim Your Business</button>`)
+  $('#top-rail').prepend(`<div style="padding: 0px;" class="ui basic segment" ><button id="claim-button" style="background: orange; color: white;" class="ui button" >Claim Your Business</button></div>`)
 }
+$('.ui.sticky')
+  .sticky({
+    context: '#listing-column'
+  })
+;
 
   
 $('#last-divider').append(`<div class="active section" style="color: black; font-size: 18px; font-family:lato; font-weight: 500;">${listing.business_title}</div>`)
@@ -774,6 +808,15 @@ if (listing.twitter) {
   );
 }
 
+
+if (listing.youtube) {
+  $("#social-media").append(
+    `<a class="contact-info" href="${listing.youtube}" ><button class="ui circular youtube icon button">
+        <i class="youtube icon"></i>
+      </button></a>`
+  );
+}
+
 // if description append else hide the section
 if (listing.business_description) {
   // $("#section-header").append(
@@ -784,32 +827,68 @@ if (listing.business_description) {
   $("#about-section").css("display", "none");
 }
 
+console.log($('.carousel-images')[0])
+
+
 //HOURS
 // arr of listing values
 const hours = Object.values(listing);
 // map arr of listing keys, return dom elements for each day of available business hours
 let mapHours = Object.keys(listing).map((x, index) => {
   if (weekDays.some(n => n === x)) {
-    let thisDay = document.createElement("p");
+    let thisDay = document.createElement("div");
     thisDay.className = "hours-text";
-    thisDay.textContent = `${x}: ${hours[index].opening_hours}-${hours[index].closing_hours}`;
+    thisDay.innerHTML = `<span style="font-weight: 400;" >${x}</span>: ${hours[index].opening_hours}-${hours[index].closing_hours}`;
     return thisDay;
   } else {
     return null;
   }
 });
 
+// get day of week
+const d = new Date();
+let weekday = new Array(7);
+weekday[0] = "Sunday";
+weekday[1] = "Monday";
+weekday[2] = "Tuesday";
+weekday[3] = "Wednesday";
+weekday[4] = "Thursday";
+weekday[5] = "Friday";
+weekday[6] = "Saturday";
+
+const today = weekday[d.getDay()]; 
+console.log(today)
+
+if (Object.keys(listing).includes(today)) {
+  const todaysHours = listing[today]; 
+  const open = todaysHours.opening_hours.split('').slice(0, 5).join(''); 
+  const close = todaysHours.closing_hours.split('').slice(0, 5).join('');
+
+  if (Date.parse(`2009/07/13 ${open}:00`) > Date.parse(`2009/07/13 ${close}:00`)) {
+    $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div class="active title ">   <i class="dropdown icon"></i> <span style="color: green;" class="listing_p" >Open Now: ${todaysHours.opening_hours}-${todaysHours.closing_hours}</span> </div>   <div id="hours-accordion" class="content"></div> </div>`)
+  } else {
+    $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div class="active title ">   <i class="dropdown icon"></i> <span style="color: red"; class="listing_p" >Closed Now: ${todaysHours.opening_hours}-${todaysHours.closing_hours}</span> </div>   <div id="hours-accordion" class="content"></div> </div>`)
+  }
+} else {
+  $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div class="active title ">   <i class="dropdown icon"></i> <span style="color: red"; class="listing_p" >Closed Today</span> </div>   <div id="hours-accordion" class="content"></div> </div>`)
+}
+
 // if hours arr has content append them
 if (mapHours.length > 25) {
   console.log(mapHours);
   mapHours.forEach(day => {
-    $("#hours-column").append(day);
+    $("#hours-accordion").append(day);
   });
   // else say no hours available
 } else {
   console.log('else')
-  $("#hours-column").css('display', 'none')
+  $("#hours-column").css('display', 'none'); 
 }
+
+$('.ui.accordion')
+  .accordion()
+
+
 
 // if youtube append embed
 if (listing.youtube) {
@@ -817,7 +896,7 @@ if (listing.youtube) {
   id="youtube-hr"
   style="padding: 0px;"
   class="sixteen wide column"
-> <hr class="style14"/></div>`);
+> </div>`);
   let ytUrl = listing.youtube.split("/");
 
   if (ytUrl.some(x => x === "user")) {
@@ -866,13 +945,25 @@ if (listing.youtube) {
         $("#youtube-embed").embed();
       }
     }
-  } else {
-    let vidId = listing.youtube.split('v=')[1]; 
+  } else if (listing.youtube.split('v=')) {
+
+  } else if (listing.youtube.split('youtu.be/')) {
+    let vidId = listing.youtube.split('youtu.be/')[1]; 
     console.log(listing.youtube)
     console.log(vidId);
 
     $("#youtube-col").append(
-      `<div id="youtube-embed" class="ui embed youtube" data-url="https://www.youtube.com/embed/${vidId}&origin=${frontUrl}&SameSite=None;Secure"  ></div>`
+      `<div id="youtube-embed" class="ui embed youtube" data-url="http://www.youtube.com/embed/${vidId}"  ></div>`
+    );
+    $("#youtube-embed").embed();
+    } else {
+    let split = listing.youtube.split('&')[0]; 
+    let vidId = split.split('=')[1]
+    console.log(listing.youtube)
+    console.log(vidId);
+
+    $("#youtube-col").append(
+      `<div id="youtube-embed" class="ui embed youtube" data-url="http://www.youtube.com/embed/${vidId}"  ></div>`
     );
     $("#youtube-embed").embed();
   }

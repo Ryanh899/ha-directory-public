@@ -371,6 +371,16 @@ $("body").keyup(function(event) {
       return;
     }
   }
+
+  $('#listBusiness-button').hover(function () {
+    $(this).css('background', 'white'); 
+    $('#sign-in').css('background', '#f9f9f9')
+  })
+
+  $('#sign-in').hover(function () {
+    $(this).css('background', '#f9f9f9'); 
+    $('#listBusiness-button').css('background', 'white')
+  })
 });
 
 });

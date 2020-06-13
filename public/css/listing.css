@@ -1,41 +1,49 @@
 p {
-  font-family: 'lato';
-  font-size: 20px;
+  font-family: 'raleway';
+  font-size: 18px;
+  color: black;
+  line-height: 1.25;
 }
 
 li {
-  font-family: 'lato';
-  font-size: 20px;
+  font-family: 'raleway';
+  font-size: 18px;
+  color: black;
 }
 
 a {
-  font-family: 'lato';
-  font-size: 20px;
+  font-family: 'raleway';
+  font-size: 18px;
   color: #1f7a8c;
 }
 
 h1 {
-  font-family: 'lato';
+  font-family: 'raleway';
 }
 
 h2 {
-  font-family: 'lato';
+  font-family: 'raleway';
 }
 
 h3 {
-  font-family: 'lato';
+  font-family: 'raleway';
 }
 
 h4 {
-  font-family: 'lato';
+  font-family: 'raleway';
 }
 
 h5 {
-  font-family: 'lato';
+  font-family: 'raleway';
+}
+
+h6 {
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 li {
-  font-family: 'lato';
+  font-family: 'raleway';
 }
 
 #listing-page-container {
@@ -70,8 +78,8 @@ a:hover {
 }
 
 .listing_category {
-  font-weight: 300;
-  font-family: "Roboto";
+  font-weight: 400;
+  font-family: "Raleway";
   font-size: 20px;
   color: grey;
   margin-bottom: 0.5rem;
@@ -96,9 +104,15 @@ a:hover {
 }
 
 #header-image {
-  margin: 0 auto;
-  padding: 5rem;
+  /* margin: 0 auto; */
+  padding: 0rem;
   padding-left: 1rem;
+  padding-bottom: 0rem;
+}
+
+#contact-segment {
+  margin-bottom: 0px;
+  margin-top:  1rem; 
 }
 
 .image-columns {
@@ -115,13 +129,13 @@ a:hover {
   padding: 3rem;
   padding-top: 0px;
   padding-bottom: 1rem;
-  box-shadow:
+  /* box-shadow:
   0 2.8px 2.2px rgba(0, 0, 0, 0.034),
   0 6.7px 5.3px rgba(0, 0, 0, 0.048),
   0 12.5px 10px rgba(0, 0, 0, 0.06),
   0 22.3px 17.9px rgba(0, 0, 0, 0.072),
   0 41.8px 33.4px rgba(0, 0, 0, 0.086),
-  0 100px 80px rgba(0, 0, 0, 0.12);
+  0 100px 80px rgba(0, 0, 0, 0.12); */
   /* border: solid;
   border-width: .5px 0px 0px 0px;
   border-color: black; */
@@ -214,16 +228,20 @@ a:hover {
   text-align: center;
 }
 
+#social-media {
+  margin-top: 0rem;
+  margin-bottom: 1rem;
+}
+
 #map-container {
-  /* border: solid;
-  border-width: 5px;
-  border-color: #8b786d; */
+
   height: 35vh;
   width: 100%;
   margin-right: 0px;
   position: relative;
   overflow: hidden;
   max-height: 61vh;
+  display: inline-block; 
 }
 
 #map {
@@ -272,6 +290,8 @@ a:hover {
   /* padding: 1rem; */
   /* border-color: #8b786d; */
   margin-bottom: 2rem;
+  width: 50%;
+  background: #f9f9f9;
 }
 
 .nav-bar {
@@ -343,19 +363,42 @@ a:hover {
     -webkit-box-orient: vertical;
 }
 
+#youtube-col {
+  padding: 0px;
+  margin-top: 1rem;
+}
 
-/* #title-section {
-    margin-bottom: 1rem;
-} */
+
+#title-section {
+    /* margin-left: 6.25%; */
+}
+
+#website-link {
+  color: #1f7a8c;
+}
 
 #hours-column {
     padding: 2rem;
+    display: inline-block;
+    text-align: center;
 }
 
 .hours-text {
-    font-family: 'Lato';
+    font-family: 'Raleway';
     font-weight: 300;
     font-size: 16px;
+    color: black;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#hours-accordion {
+  text-align: center;
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 16px;
+  padding-top: 0rem;
+  padding-bottom: 1rem;
 }
 
 .faq-header {
@@ -389,33 +432,51 @@ hr.style14 {
   font-family: 'Raleway';
   font-weight: 700;
   font-size: 20px;
+  color: black;
 }
 
 #claim-button {
-  width: 100%;
+  width: 343px;
   padding: 1rem;
   font-family: 'Raleway';
   font-size: 20px;
   font-weight: 500;
+  margin-top: 1rem;
 }
 
 #images-column {
-  background: #ffffff;
+  background: 	#f9f9f9;
   padding-bottom: 0px;
   padding-top: 0rem;
+  padding: 0px;
+  overflow: hidden;
   /* border: solid;
   border-color: #696969;
   border-width: 0px 0px 2.5px 0px ; */
 }
 
+
+.slick-slide { 	
+    cursor: pointer;
+  
+  }
+
+  /* .slick-track {
+    height: 353px;
+  } */
+
 #images {
-  padding: 0px;
+  padding: 25px;
+  padding-bottom: 0px;
+  padding-top: 0px;
+  height: 100%;
+
 }
 
 .carousel-images {
-  /* width: 25%; */
-  /* width: auto; */
-  /* height: 45vh; */
+  /* height: 100%; */
+  width: auto;
+  object-fit: cover;
 }
 
 #title-section-row {
@@ -429,7 +490,15 @@ hr.style14 {
   width: auto;
 }
 
-.slick-slide {
-  cursor: pointer;
+#title-row {
+  padding: 2rem;
+}
+
+#todays-hours-div {
+  margin-bottom: 1rem;
+}
+
+#right-rail-bottom {
+  width: 350px;
 }
 
