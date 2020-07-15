@@ -155,7 +155,7 @@ if (authHelper.isLoggedIn()) {
     sessionStorage.removeItem('plan'); 
     sessionStorage.removeItem('subscription_id'); 
     sessionStorage.removeItem('customer_id'); 
-    sessionStorage.removeItem('logoSearch'); 
+    // sessionStorage.removeItem('logoSearch'); 
     $("#logout-button").css("display", "none");
   }
 

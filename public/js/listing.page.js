@@ -74,6 +74,15 @@ function getChannelFromUrl(url) {
   return url;
 }
 
+function showSpecialSkills (skills) {
+  console.log('Skills: ', skills); 
+  if (skills === 'ISHRS') {
+    $('#sticky').prepend(`<div id="special-skills-accordion" class="ui styled accordion" style="margin-top:1rem;" > <div id="special-skills-text"  class="active title ">  <img class="ui small centered image" src="./images/${skills}.png"> <span style="display:block;" >Member of the ${skills} </span> </div>   <div class="content"></div> </div>`)
+  } else if (skills === 'Trichologist') {
+    $('#sticky').prepend(`<div id="special-skills-accordion" class="ui styled accordion" style="margin-top:1rem;" > <div id="special-skills-text"  class="active title ">  <img class="ui small centered image" src="./images/WTS.png"> <span style="display:block;" >Member of the WTS </span> </div>   <div class="content"></div> </div>`)
+  }
+}
+
 function getChannelIdFromUrl(url) {
   var pattern = /^(?:(http|https):\/\/[a-zA-Z-]*\.{0,1}[a-zA-Z-]{3,}\.[a-z]{2,})\/channel\/([a-zA-Z0-9_]{3,})$/;
   var matchs = url.match(pattern);
@@ -651,12 +660,22 @@ const images = await filteredImg.map(image => {
     let thisImage = new Image(); 
     thisImage.onload = function () {
       console.log(thisImage.height)
+      if (thisImage.width < 750) {
+      // console.log("width: " + thisImage.width)
       if (thisImage.height < smallestHeight && thisImage.height > 320) {
         smallestHeight = thisImage.height; 
         console.log(smallestHeight)
         $('#images-column').css('max-height', smallestHeight + 'px')
         $('#image-slider-id').css('max-height', smallestHeight + 'px')
+      } else {
+        thisImage.height = '320px'
+        console.log(`image is ${thisImage.height}`)
       }
+    } else {
+      console.log('image is: ' + thisImage.width + 'wide, ' + thisImage.src); 
+      thisImage.remove(); 
+    }
+
     }
     // let src = image.image_path.split('.')[0]; 
     // console.log(src)
@@ -865,7 +884,7 @@ if (Object.keys(listing).includes(today)) {
   const close = todaysHours.closing_hours.split('').slice(0, 5).join('');
 
   if (Date.parse(`2009/07/13 ${open}:00`) > Date.parse(`2009/07/13 ${close}:00`)) {
-    $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div class="active title ">   <i class="dropdown icon"></i> <span style="color: green;" class="listing_p" >Open Now: ${todaysHours.opening_hours}-${todaysHours.closing_hours}</span> </div>   <div id="hours-accordion" class="content"></div> </div>`)
+    $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div id="currentHours" class="active title ">   <i class="dropdown icon"></i> <span style="color: green;" class="listing_p" >Open Now</span>: ${todaysHours.opening_hours}-${todaysHours.closing_hours} </div>   <div id="hours-accordion" class="content"></div> </div>`)
   } else {
     $('#sticky').prepend(`<div class="ui styled accordion" style="margin-top:1rem;" > <div class="active title ">   <i class="dropdown icon"></i> <span style="color: red"; class="listing_p" >Closed Now: ${todaysHours.opening_hours}-${todaysHours.closing_hours}</span> </div>   <div id="hours-accordion" class="content"></div> </div>`)
   }
@@ -888,7 +907,7 @@ if (mapHours.length > 25) {
 $('.ui.accordion')
   .accordion()
 
-
+showSpecialSkills(sessionStorage.getItem('logoSearch'))
 
 // if youtube append embed
 if (listing.youtube) {

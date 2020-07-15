@@ -12,7 +12,7 @@
     padding: 0px;
     background: #f9f9f9;
     /* border: solid;
-    border-width: 0px 0px 2.5px 0px;
+    border-width: 0px 0px 1px 0px;
     border-color: black; */
   }
 /* #landing grid  */
@@ -33,6 +33,15 @@
     height: 100%;
     width: 100%;
     margin: 0px;
+  }
+
+  .page-links {
+    font-family: "lato", sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    color: black;
+    padding: 1rem;
+    /* display: inline; */
   }
 /* #dashboard-column */
 
@@ -98,7 +107,7 @@
 #sign-in-button {
     background: #696969;
     font-family: "lato", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 20px;
     height: 100%;
     display: table;
@@ -126,12 +135,13 @@
     color: black;
     padding: 0.5rem;
     cursor: pointer;
+    background: #f9f9f9;
   }
 /* listbusiness-button  */
 #listBusiness-button {
     background: white;
     font-family: "lato", sans-serif;
-    font-weight: 400;
+    font-weight: 300;
     font-size: 20px;
     height: 100%;
     display: table;

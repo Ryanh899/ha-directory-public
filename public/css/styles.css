@@ -44,6 +44,18 @@ a:hover {
   color: black;
 }
 
+#error-modal {
+  padding: 5rem;
+}
+
+#newsletter-modal {
+  padding: 5rem;
+}
+
+#newsletter-description {
+  justify-content: center;
+  text-align: center;
+}
 /* top header  */
 #header-row {
   background: #446a7f;
@@ -51,8 +63,8 @@ a:hover {
 }
 
 .header-text {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   color: white;
   text-decoration: underline;
 }
@@ -62,15 +74,15 @@ a:hover {
   color: white;
   background: rgba(39, 76, 119, 1);
   /* color: #112941; */
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   width: 100%;
   margin-bottom: 0.5rem;
 }
 .box-button {
   color: white;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   width: auto;
   margin-bottom: 0.5rem;
   background: #1f7a8c;
@@ -124,8 +136,8 @@ a:hover {
 
 #sign-in-button {
   background: #696969;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -157,8 +169,8 @@ a:hover {
 
 #listBusiness-button {
   background: white;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -171,8 +183,8 @@ a:hover {
 
 #logout-button {
   background: #3aa7a3;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -183,8 +195,8 @@ a:hover {
 
 #saved-listings {
   background: #9dd9d2;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -213,7 +225,7 @@ a:hover {
 
 #ha-title {
   font-size: 35px;
-  /* font-family: 'cabin', sans-serif; */
+  /* font-family: 'lato', sans-serif; */
   /* font-weight: 700; */
   font-family: "Raleway";
   font-weight: 600;
@@ -228,7 +240,7 @@ a:hover {
   float: right;
   margin-right: 5rem;
   font-size: 24px;
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 600;
   /* color: #112941; */
   color: white;
@@ -254,8 +266,8 @@ a:hover {
 }
 
 .page-links {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 18px;
   color: black;
   padding: 1rem;
@@ -322,8 +334,8 @@ a:hover {
 }
 
 #search-subtitle {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 25px;
   color: black;
   margin-bottom: 1rem;
@@ -339,20 +351,20 @@ a:hover {
 
 #landing-card-header {
   font-size: 25px;
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 700;
   padding-bottom: 0px;
   margin-bottom: 1rem;
 }
 
 #landing-card-text {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 14px;
 }
 
 .notWhite-header-text {
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 700;
   font-size: 40px;
 }
@@ -393,8 +405,8 @@ a:hover {
 }
 
 .logo-text {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 18px;
   color: #444444;
   margin-top: 2rem;
@@ -619,7 +631,7 @@ a:hover {
 }
 
 #copyright {
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 100;
   color: black;
   
@@ -652,8 +664,8 @@ a:hover {
 
 #dashboard-button {
   background: #8b786d;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 18px;
   height: 101%;
   display: table;
@@ -665,7 +677,7 @@ a:hover {
 }
 
 #landing-list-p {
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 300;
   font-size: 16px;
   color: #001021;
@@ -773,7 +785,7 @@ a:hover {
 }
 
 .step-list-content {
-  font-family: "cabin", sans-serif;
+  font-family: "lato", sans-serif;
   font-weight: 300;
   font-size: 30px;
   /* color: #446a7f; */
@@ -798,8 +810,8 @@ a:hover {
 #step-1-content {
   line-height: 1.85em;
   font-size: 16px;
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   color: black;
   margin-left: 2rem;
 }
@@ -807,8 +819,8 @@ a:hover {
 .step-text {
   line-height: 1.85em;
   font-size: 16px;
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   color: black;
 }
 
@@ -865,8 +877,8 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 #step-2-content {
   line-height: 1.85em;
   font-size: 16px;
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   color: black;
   margin-left: 5rem;
 }
@@ -934,8 +946,8 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 #step-3-content {
   line-height: 1.85em;
   font-size: 16px;
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   color: black;
 }
 
@@ -1001,7 +1013,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 #list-demo-p {
-  font-family: "cabin";
+  font-family: "lato";
   font-weight: 300;
   color: grey;
   font-size: 18px;
@@ -1107,7 +1119,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 #problems-text {
-  font-family: 'cabin';
+  font-family: 'lato';
   font-weight: 300;
   font-size: 35px;
   text-align: left;
@@ -1164,15 +1176,15 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 #why-title {
-  font-family: 'Libre Baskerville';
-  font-weight: 700;
-  font-size: 35px;
+  font-family: 'Raleway';
+  font-weight: 500;
+  font-size: 45px;
   letter-spacing: -1.5px;
   margin-bottom: 1rem;
 }
 
 .why-text {
-  font-family: 'cabin';
+  font-family: 'lato';
   font-weight: 300;
   font-size: 18px;
   color: black;
@@ -1232,7 +1244,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 .cta-text {
-  font-family: 'cabin';
+  font-family: 'lato';
   font-weight: 300;
   font-size: 18px;
   color: black;
@@ -1240,10 +1252,18 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 .ha-subtitle {
-  font-family: 'cabin';
+  font-family: 'lato';
   font-weight: 300;
   font-size: 20px;
   color: #1F7A8C;
+}
+
+#newsletter-img {
+  background: #f9f9f9;
+}
+
+#newsletter-modal {
+  background: #f9f9f9; 
 }
 
 .rale-strong {
@@ -1339,8 +1359,8 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 
 
 #client-drop-div {
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -1351,8 +1371,8 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
   text-align: center;
   vertical-align: middle;
   display: table-cell;
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   font-size: 16px;
   color: #696969;
   padding: 0.5rem;
@@ -1367,16 +1387,16 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 .user-menu-option-text {
-  font-family: 'cabin';
-  font-weight: 400;
+  font-family: 'lato';
+  font-weight: 300;
   font-size: 16px;
   color: #696969;
 }
 
 #back-button {
   background: #1f7a8c;
-  font-family: "cabin", sans-serif;
-  font-weight: 400;
+  font-family: "lato", sans-serif;
+  font-weight: 300;
   font-size: 20px;
   height: 101%;
   display: table;
@@ -1395,7 +1415,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 }
 
 .modalDescription {
-    font-family: 'cabin';
+    font-family: 'lato';
     font-weight: 300;
     font-size: 20px;
     padding: 2rem;
@@ -1418,7 +1438,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 
 .about-text {
   font-weight: 300;
-  font-family: 'cabin';
+  font-family: 'lato';
   font-size: 20px;
 }
 
@@ -1750,7 +1770,7 @@ box-shadow: rgba(0, 0, 0, 0.4) -4px 9px 11px 6px;
 } */
 
 .hover-text {
-  font-family: 'cabin';
+  font-family: 'lato';
   font-weight: 600;
   color: white;
   font-size: 18px;

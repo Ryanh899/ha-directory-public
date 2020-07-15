@@ -23,9 +23,19 @@ function initialize() {
 // show modal
 function showErrModal (modal, header, description, errHeader, errMessage) {
   $(header).text(errHeader)
-  $(description).text(errMessage)
+  $(description).html(errMessage)
 
   $(modal).modal('show')
+}
+
+function showNewsModal (modal, header, description, errHeader, errMessage) {
+  if (!sessionStorage.getItem('first')) {
+    sessionStorage.setItem('first', true); 
+    $(header).text(errHeader)
+    $(description).html(errMessage)
+  
+    $(modal).modal('show')
+  } 
 }
 
 // gets current city and state from lat lng (ln 77)
@@ -267,7 +277,9 @@ getLocation();
 // categoryButtons(categories); 
 
 // slick images 
-setTimeout(slick(), 100)
+setTimeout(slick(), 100);
+
+showNewsModal ('#newsletter-modal', '#newsletter-header', '#newsletter-description', 'Sign up for our weekly Newsletter to stay up to date on the latest in hair loss!', "<a class='ui green big button' href='https://hairauthority.com/news/' target='_blank'  >Sign up for our Newsletter</a>")
 
 // on search click
 $("body").on("click", "a#search-button", async function() {

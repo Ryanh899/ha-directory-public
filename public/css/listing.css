@@ -19,22 +19,32 @@ a {
 
 h1 {
   font-family: 'raleway';
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 h2 {
   font-family: 'raleway';
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 h3 {
   font-family: 'raleway';
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 h4 {
   font-family: 'raleway';
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 h5 {
   font-family: 'raleway';
+  font-weight: 600px;
+  font-size: 20px;
 }
 
 h6 {
@@ -44,6 +54,11 @@ h6 {
 
 li {
   font-family: 'raleway';
+}
+
+.team-details {
+  margin-top: 3.5rem;
+  margin-bottom: 2rem;
 }
 
 #listing-page-container {
@@ -342,12 +357,12 @@ a:hover {
     max-height: 55vh;
 }
 
-#direction-link {
+/* #direction-link {
     overflow: hidden;
     display: -webkit-box;
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
-}
+} */
 
 #website-div {
     overflow: hidden;
@@ -405,6 +420,25 @@ a:hover {
   font-family: 'Raleway';
   font-weight: 500;
   font-size: 18px;
+}
+
+#currentHours {
+  font-family: 'Raleway';
+  font-weight: 300;
+  font-size: 18px;
+  
+}
+
+#special-skills-accordion {
+  width: 343px;
+
+}
+
+#special-skills-text {
+  font-family: 'Raleway';
+  font-weight: 400;
+  font-size: 18px;
+  text-align: center;
 }
 
 #listBusiness-button {
@@ -474,7 +508,7 @@ hr.style14 {
 }
 
 .carousel-images {
-  /* height: 100%; */
+  height: 50vh;
   width: auto;
   object-fit: cover;
 }
@@ -502,3 +536,9 @@ hr.style14 {
   width: 350px;
 }
 
+.ha-subtitle {
+  font-family: 'lato';
+  font-weight: 300;
+  font-size: 20px;
+  color: #1F7A8C;
+}

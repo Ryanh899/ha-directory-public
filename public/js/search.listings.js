@@ -792,7 +792,8 @@ async function drawMap(geoPos, city) {
         window.location.assign('error.html')
       });
   } else {
-    window.location.assign('index.html')
+    console.log('nada')
+    // window.location.assign('index.html')
   }
 }
 

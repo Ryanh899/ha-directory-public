@@ -24,6 +24,13 @@
   display: inline;
 }
 
+.ha-subtitle {
+  font-family: 'lato';
+  font-weight: 300;
+  font-size: 20px;
+  color: #1F7A8C;
+}
+
 #home-button {
   padding: 0.75rem;
   float: right;
