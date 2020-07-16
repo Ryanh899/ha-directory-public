@@ -25,7 +25,7 @@ var authHelper = {
 const API_URL = "https://hadirectoryapi.com/api/"; 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
-const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
+const ADMIN_URL = "http://localhost:3000/admin/"; 
 
 
 const categories = [
@@ -101,6 +101,9 @@ function getPendingListings(loader, page, text, pendingArr) {
     .then(response => {
       const listings = response.data;
       console.log(response);
+      const count = listings[listings.length-1]
+      console.log(count)
+      $('#pending-heading').append(`<p style="font-family: 'lato';font-size: 16px;font-weight: 300"  >Pending Listings: ${count[0].count} </p>`)
       // $(loader).css("display", "none");
       // $(page).fadeIn();
       if (listings.length !== 0) {
@@ -136,6 +139,8 @@ function getAllListings(loader, page, listingsArr) {
     .then(response => {
       const listings = response.data;
       console.log(response);
+      const count = listings[listings.length-1]
+      $('#published-heading').append(`<p style="font-family: 'lato';font-size: 16px;font-weight: 300"  >Published Listings: ${count[0].count} </p>`)
       // $(loader).css("display", "none");
       // $(page).fadeIn();
       if (listings.length !== 0) {
@@ -674,7 +679,7 @@ if (sessionStorage.getItem('adminSearchQuery_pending')) {
       // window.location.assign("search.listings.html");
     });
 
-    $('#home').append(`<button id="refresh" class="btn btn-primary">Update Refresh</button>`); 
+    // $('#home').append(`<button id="refresh" class="btn btn-primary">Update Refresh</button>`); 
 
     $('body').on('click', '#refresh', () => {
       myAxios.put(API_URL + 'udateRefresh')

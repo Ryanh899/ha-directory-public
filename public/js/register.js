@@ -22,7 +22,8 @@ var authHelper = {
 // ec2 api url 
 const API_URL = "https://hadirectoryapi.com/api/"; 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
-const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
+// const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
+const AUTH_URL = "http://localhost:3000/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -75,7 +76,7 @@ $(document).ready(function() {
         console.log('invalid phone number')
       $(phone).css("border", "solid");
       $(phone).css("border-color", "red");
-    } else if (formData.get("password").length < 5) {
+    } else if (formData.get("password").length < 8) {
         console.log('pswd length')
       $(password).css("border", "solid");
       $(password).css("border-color", "red");

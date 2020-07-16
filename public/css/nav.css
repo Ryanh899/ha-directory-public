@@ -151,7 +151,7 @@
   #list-business-button {
     /* background-image: linear-gradient(to right top, #112941, #294860, #446a7f, #628e9f, #83b3bf); */
     color: white;
-    background: rgba(39, 76, 119, 1);
+    /* background: rgba(39, 76, 119, 1); */
     /* color: #112941; */
     font-family: "Montserrat", sans-serif;
     font-weight: 400;

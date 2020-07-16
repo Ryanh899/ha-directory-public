@@ -70,7 +70,7 @@
   // let API_URL = "http://ec2-34-201-189-88.compute-1.amazonaws.com/api/"
 // ec2 api url 
 const API_URL = "https://hadirectoryapi.com/api"; 
-const ZOHO_URL = "https://hadirectoryapi.com/zoho"; 
+const ZOHO_URL = "http://hadirectoryapi.com/zoho"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin"; 
 

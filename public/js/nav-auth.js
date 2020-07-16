@@ -95,7 +95,7 @@ if (authHelper.isLoggedIn()) {
       }
       $("#sign-in-column").html(`
       <div style="background: #696969; border-bottom: solid; border-color: #696969; border-width: 5px;" id="listBusiness-button">
-      <p style="color: white;" class="top-button listBusClick" id="register"><i class="store icon" ></i>List Your Business</p>
+      <p  class="top-button listBusClick" id="register"><i class="store icon" ></i>List Your Business</p>
       </div>
       `);
     } else if (userInfo && userInfo.isProfessionalUser) {
