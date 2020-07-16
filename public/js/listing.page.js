@@ -26,8 +26,8 @@
 
 // API URL
 // ec2 api url 
-// const API_URL = "https://hadirectoryapi.com/api/"; 
-const API_URL = "http://localhost:3000/api/"; 
+const API_URL = "https://hadirectoryapi.com/api/"; 
+// const API_URL = "http://localhost:3000/api/"; 
 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
