@@ -22,8 +22,8 @@ var authHelper = {
 // ec2 api url 
 const API_URL = "https://hadirectoryapi.com/api/"; 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
-// const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
-const AUTH_URL = "http://localhost:3000/auth/"; 
+const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
+// const AUTH_URL = "http://localhost:3000/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
 function validateEmail(email) {
   var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
