@@ -174,7 +174,7 @@ $(document).ready(function() {
             sessionStorage.setItem('lastLocation', 'listing.form')
             alert('Your session has expired')
   
-            window.location.assign('sign-in.html')
+            // window.location.assign('sign-in.html')
           }
         } else if (response.data.exists) {
           console.log('no timecheck + no forms completed')
@@ -202,7 +202,7 @@ $(document).ready(function() {
             sessionStorage.setItem('lastLocation', 'listing.form')
             alert('Your session has expired')
   
-            window.location.assign('sign-in.html')
+            // window.location.assign('sign-in.html')
     } else if (subCheck && sessionStorage.getItem('formsCompleted')) {
       sessionStorage.setItem('card_id', sessionStorage.getItem('card_id'))
       sessionStorage.setItem('subscription_id', JSON.stringify({ timeStamp: new Date(), value: JSON.parse(sessionStorage.getItem('subscription_id')).value})); 
@@ -1118,7 +1118,7 @@ $(document).ready(function() {
       sessionStorage.removeItem('currentListing');
       sessionStorage.setItem('lastLocation', 'listing.form'); 
       sessionStorage.setItem('claimListing', JSON.stringify({ timeStamp: new Date(), value: currentListing })); 
-      window.location.assign('sign-in.html');
+      // window.location.assign('sign-in.html');
     }
 
     
