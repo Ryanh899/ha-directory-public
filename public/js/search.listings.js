@@ -54,7 +54,6 @@ const newCategories = [
   { title: "Trichologists" }
 ];
 
-
 var authHelper = {
   isLoggedIn() {
     const token = sessionStorage.getItem("token");
@@ -63,10 +62,10 @@ var authHelper = {
       var expirationDate = new Date(userData.exp * 1000);
       if (Date.now() > expirationDate) {
         this.logOut();
-      return false 
-    } else {
-      return true;
-    }
+        return false;
+      } else {
+        return true;
+      }
     } else {
       return false;
     }
@@ -83,7 +82,7 @@ var authHelper = {
       if (userData.isProfessionalUser) {
         return true;
       } else {
-        return false
+        return false;
       }
     } else {
       return false;
@@ -96,11 +95,12 @@ var authHelper = {
       const expirationDate = new Date(userData.exp * 1000);
       const adminToken = this.parseToken(userData.adminToken);
       const expirationDate__admin = new Date(userData.exp * 1000);
-      if (Date.now() > expirationDate || Date.now() > expirationDate__admin) this.logOut();
-      if (userData.isAdminUser && adminToken.admin ) {
+      if (Date.now() > expirationDate || Date.now() > expirationDate__admin)
+        this.logOut();
+      if (userData.isAdminUser && adminToken.admin) {
         return true;
       } else {
-        return false
+        return false;
       }
     } else {
       return false;
@@ -111,151 +111,147 @@ var authHelper = {
   }
 };
 
-function pageNumbers (listings) {
-    if (listings.length > 50) {
-
-    }
+function pageNumbers(listings) {
+  if (listings.length > 50) {
+  }
 }
 
 $(document).ready(function() {
+  let geocoder;
 
-  let geocoder; 
-
-  let distance = sessionStorage.getItem('distance') || 80467; 
-  console.log(distance)
-  $(`#${distance}`).addClass('active'); 
-  $(`#mobile-${distance}`).addClass('active'); 
+  let distance = sessionStorage.getItem("distance") || 80467;
+  console.log(distance);
+  $(`#${distance}`).addClass("active");
+  $(`#mobile-${distance}`).addClass("active");
 
   function initialize() {
     geocoder = new google.maps.Geocoder();
-  
   }
 
   let location = {
     coords: {
-      latitude: 28.438080,
-      longitude: -81.472870
+      latitude: 28.43808,
+      longitude: -81.47287
     }
   };
-  
-  initialize(); 
-  function getCity (lat, lng, city) {
+
+  initialize();
+  function getCity(lat, lng, city) {
     return new Promise((resolve, reject) => {
-    let latlng
+      let latlng;
       if (!city) {
-        latlng = { 'latLng': new google.maps.LatLng(lat, lng)}
+        latlng = { latLng: new google.maps.LatLng(lat, lng) };
       } else {
-        latlng = { 'address' : city }
+        latlng = { address: city };
       }
       geocoder.geocode(latlng, function(results, status) {
-       if (status == google.maps.GeocoderStatus.OK) {
-       console.log(results)
-         if (results[1]) {
-          //formatted address
-          console.log(results[0].formatted_address)
-         //find country name
-         let city = `${results[1].address_components[2].long_name}, ${results[1].address_components[4].short_name}`
-        //       for (var i=0; i<results[0].address_components.length; i++) {
-        //      for (var b=0;b<results[0].address_components[i].types.length;b++) {
-    
-        //      //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
-        //          if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
-        //              //this is the object you are looking for
-        //              city= results[0].address_components[i];
-        //              break;
-        //          }
-        //      }
-        //  }
-         //city data
-         resolve(city)
-    
-    
-         } else {
-           resolve() 
-         }
-       } else {
-        resolve() 
-       }
-     });
-    })
+        if (status == google.maps.GeocoderStatus.OK) {
+          console.log(results);
+          if (results[1]) {
+            //formatted address
+            console.log(results[0].formatted_address);
+            //find country name
+            let city = `${results[1].address_components[2].long_name}, ${results[1].address_components[4].short_name}`;
+            //       for (var i=0; i<results[0].address_components.length; i++) {
+            //      for (var b=0;b<results[0].address_components[i].types.length;b++) {
+
+            //      //there are different types that might hold a city admin_area_lvl_1 usually does in come cases looking for sublocality type will be more appropriate
+            //          if (results[0].address_components[i].types[b] == "administrative_area_level_1") {
+            //              //this is the object you are looking for
+            //              city= results[0].address_components[i];
+            //              break;
+            //          }
+            //      }
+            //  }
+            //city data
+            resolve(city);
+          } else {
+            resolve();
+          }
+        } else {
+          resolve();
+        }
+      });
+    });
   }
-  
-  function changeLocation (city) {
+
+  function changeLocation(city) {
     return new Promise((resolve, reject) => {
-      let latlng = { 'address' : city }
-        geocoder.geocode(latlng, function(results, status) {
-         if (status == google.maps.GeocoderStatus.OK) {
-         console.log(results)
+      let latlng = { address: city };
+      geocoder.geocode(latlng, function(results, status) {
+        if (status == google.maps.GeocoderStatus.OK) {
+          console.log(results);
           resolve(results[0]);
-         } else {
-          resolve() 
-         }
-       });
-      })
+        } else {
+          resolve();
+        }
+      });
+    });
   }
-  
-  
+
   async function showPosition(position, city) {
-    console.log(position); 
-    console.log(city)
+    console.log(position);
+    console.log(city);
     if (!city) {
       sessionStorage.setItem("lat", position.coords.latitude);
       sessionStorage.setItem("lng", position.coords.longitude);
-      const currentAddress = await getCity(position.coords.latitude, position.coords.longitude); 
+      const currentAddress = await getCity(
+        position.coords.latitude,
+        position.coords.longitude
+      );
 
-      location.coords.latitude = sessionStorage.getItem('lat')
-      location.coords.longitude = sessionStorage.getItem('lng')
-      console.log('current address: ' + currentAddress)
-      console.log(currentAddress)
-      $('#location').attr('placeholder', currentAddress); 
-      $(page).fadeIn()
-      $(loader).hide()
-
+      location.coords.latitude = sessionStorage.getItem("lat");
+      location.coords.longitude = sessionStorage.getItem("lng");
+      console.log("current address: " + currentAddress);
+      console.log(currentAddress);
+      $("#location").attr("placeholder", currentAddress);
+      $(page).fadeIn();
+      $(loader).hide();
     } else {
-  
-      const currentAddress = await changeLocation(city); 
-  
-      sessionStorage.setItem("current-lat", currentAddress.geometry.location.lat());
-      sessionStorage.setItem("current-lng", currentAddress.geometry.location.lng());
+      const currentAddress = await changeLocation(city);
+
+      sessionStorage.setItem(
+        "current-lat",
+        currentAddress.geometry.location.lat()
+      );
+      sessionStorage.setItem(
+        "current-lng",
+        currentAddress.geometry.location.lng()
+      );
       sessionStorage.setItem("lat", currentAddress.geometry.location.lat());
       sessionStorage.setItem("lng", currentAddress.geometry.location.lng());
 
-      location.coords.latitude = sessionStorage.getItem('current-lat')
-      location.coords.longitude = sessionStorage.getItem('current-lng')
-  
-      console.log('current address: ' + currentAddress); 
-      console.log(currentAddress); 
-      $('#location').attr('placeholder', currentAddress); 
-      $(page).fadeIn()
-      $(loader).hide()
+      location.coords.latitude = sessionStorage.getItem("current-lat");
+      location.coords.longitude = sessionStorage.getItem("current-lng");
 
+      console.log("current address: " + currentAddress);
+      console.log(currentAddress);
+      $("#location").attr("placeholder", currentAddress);
+      $(page).fadeIn();
+      $(loader).hide();
     }
   }
-  
-  
+
   function getLocation(city) {
-    console.log([...arguments].length)
+    console.log([...arguments].length);
     if (navigator.geolocation && ![...arguments].length) {
       navigator.geolocation.getCurrentPosition(showPosition);
-    } else if([...arguments].length) {
+    } else if ([...arguments].length) {
       console.log("Geolocation is not supported by this browser.");
-      showPosition(location)
+      showPosition(location);
     }
   }
-  
-  
-  
-  
-    getLocation();
+
+  getLocation();
 
   const page = document.querySelector("div#page-container");
   const loader = document.querySelector("div#loader-div");
-// ec2 api url 
-const API_URL = "https://hadirectoryapi.com/api/"; 
-// const API_URL = "http://localhost:3000/api/"; 
-const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
-const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
-const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
+  // ec2 api url
+  const API_URL = "https://hadirectoryapi.com/api/";
+  const API_URL = "http://localhost:3000/api/";
+  const ZOHO_URL = "https://hadirectoryapi.com/zoho/";
+  const AUTH_URL = "https://hadirectoryapi.com/auth/";
+  const ADMIN_URL = "https://hadirectoryapi.com/admin/";
   // if (process.env.NODE_ENV = 'production') {
   //   console.log(env)
   //   API_URL = "ec2-54-90-69-186.compute-1.amazonaws.com/api/";
@@ -263,21 +259,22 @@ const ADMIN_URL = "https://hadirectoryapi.com/admin/";
 
   // }
 
-
-
   $(page).css("display", "none");
 
-if (sessionStorage.getItem('current-lat') && sessionStorage.getItem('current-lng')) {
-  location.coords.latitude = sessionStorage.getItem('current-lat')
-  location.coords.longitude = sessionStorage.getItem('current-lng')
-} else {
-  console.log('current location not in SS')
-}
+  if (
+    sessionStorage.getItem("current-lat") &&
+    sessionStorage.getItem("current-lng")
+  ) {
+    location.coords.latitude = sessionStorage.getItem("current-lat");
+    location.coords.longitude = sessionStorage.getItem("current-lng");
+  } else {
+    console.log("current location not in SS");
+  }
 
-let markerInfo = [];
+  let markerInfo = [];
 
-async function drawMap(geoPos, city) {
-    let geolocate; 
+  async function drawMap(geoPos, city) {
+    let geolocate;
     if (geoPos) {
       geolocate = new google.maps.LatLng(
         geoPos.coords.latitude,
@@ -285,31 +282,32 @@ async function drawMap(geoPos, city) {
       );
     } else {
       geolocate = await new Promise((resolve, reject) => {
-        let latlng = { 'address' : city }
+        let latlng = { address: city };
         geocoder.geocode(latlng, function(results, status) {
-         if (status == google.maps.GeocoderStatus.OK) {
-         console.log(results)
-         const currentAddress = results[0]; 
-          resolve(new google.maps.LatLng(
-            currentAddress.geometry.location.lat(),
-            currentAddress.geometry.location.lng()
-          ));
-         } else {
-           resolve()
-         }
-       });
-      })
-      
+          if (status == google.maps.GeocoderStatus.OK) {
+            console.log(results);
+            const currentAddress = results[0];
+            resolve(
+              new google.maps.LatLng(
+                currentAddress.geometry.location.lat(),
+                currentAddress.geometry.location.lng()
+              )
+            );
+          } else {
+            resolve();
+          }
+        });
+      });
     }
-    console.log(geolocate)
+    console.log(geolocate);
     let mapProp = {
       center: geolocate,
-      zoom: 9, 
+      zoom: 9,
       disableDefaultUI: true,
       zoomControl: true
     };
     let map = new google.maps.Map(document.getElementById("map"), mapProp);
-    console.log(markerInfo)
+    console.log(markerInfo);
     if (markerInfo.length > 0) {
       markerInfo.forEach(item => {
         let marker = new google.maps.Marker({
@@ -318,18 +316,17 @@ async function drawMap(geoPos, city) {
             lng: Number(item.lng)
           },
           map: map,
-          title: item.business_title, 
-          animation:google.maps.Animation.DROP, 
-          
+          title: item.business_title,
+          animation: google.maps.Animation.DROP
         });
         let infowindow = new google.maps.InfoWindow({
           content: `<p class="markerText" >${item.business_title}</p> <p class="markerText" >${item.full_address}</p>`
         });
-        marker.addListener('click', function() {
+        marker.addListener("click", function() {
           infowindow.open(map, marker);
         });
       });
-      markerInfo = []; 
+      markerInfo = [];
     }
     $(page).fadeIn();
     $(loader).fadeOut();
@@ -363,10 +360,10 @@ async function drawMap(geoPos, city) {
 
   $("body").on("click", "#back-button", function() {
     // remove search query
-    sessionStorage.removeItem('searchQuery')
+    sessionStorage.removeItem("searchQuery");
     // go back
-    window.history.back(); 
-  });  
+    window.history.back();
+  });
 
   // $("body").on("click", "#search-button", function() {
   //   const search = document.querySelector("input#search-search").value.trim();
@@ -377,72 +374,79 @@ async function drawMap(geoPos, city) {
   // });
 
   $("body").on("click", "a#search-button", async function() {
-    $(loader).show()
-    let search; 
-    document.querySelector("input#request").value.trim() ? search = document.querySelector("input#request").value.trim() : search = sessionStorage.getItem('searchQuery')
-    const location = document.querySelector('input#location').value.trim(); 
-    console.log(search); 
-    console.log(location)
+    $(loader).show();
+    let search;
+    document.querySelector("input#request").value.trim()
+      ? (search = document.querySelector("input#request").value.trim())
+      : (search = sessionStorage.getItem("searchQuery"));
+    const location = document.querySelector("input#location").value.trim();
+    console.log(search);
+    console.log(location);
 
-    if (location !== '') {
-      await showPosition(null, location); 
-      sessionStorage.setItem('location', location); 
+    if (location !== "") {
+      await showPosition(null, location);
+      sessionStorage.setItem("location", location);
     }
     sessionStorage.setItem("lastLocation", "index");
     sessionStorage.setItem("searchQuery", search);
 
-    searchListings()
+    searchListings();
     // window.location.assign("search.listings.html");
   });
 
   $("body").on("click", "a#mobile-search-button", async function() {
-    $(loader).show()
-    let search; 
-    document.querySelector("input#mobile-request").value.trim() ? search = document.querySelector("input#mobile-request").value.trim() : search = sessionStorage.getItem('searchQuery')
-    const location = document.querySelector('input#mobile-location').value.trim(); 
-    console.log(search); 
-    console.log(location)
+    $(loader).show();
+    let search;
+    document.querySelector("input#mobile-request").value.trim()
+      ? (search = document.querySelector("input#mobile-request").value.trim())
+      : (search = sessionStorage.getItem("searchQuery"));
+    const location = document
+      .querySelector("input#mobile-location")
+      .value.trim();
+    console.log(search);
+    console.log(location);
 
-    if (location !== '') {
-      await showPosition(null, location); 
-      sessionStorage.setItem('location', location); 
+    if (location !== "") {
+      await showPosition(null, location);
+      sessionStorage.setItem("location", location);
     }
     sessionStorage.setItem("lastLocation", "index");
     sessionStorage.setItem("searchQuery", search);
 
-    searchListings()
+    searchListings();
     // window.location.assign("search.listings.html");
   });
 
   $("body").on("click", "#home-button", function() {
-
-    sessionStorage.setItem('lastLocation', 'search')
+    sessionStorage.setItem("lastLocation", "search");
 
     window.location.assign("index.html");
   });
 
   $("body").on("click", "button.distanceButtons", function() {
-    if ($(this).attr('id') !== distance) {
-      $(this).addClass('active'); 
-      $(`#${distance}`).removeClass('active'); 
-      $(`#mobile-${distance}`).removeClass('active'); 
+    if ($(this).attr("id") !== distance) {
+      $(this).addClass("active");
+      $(`#${distance}`).removeClass("active");
+      $(`#mobile-${distance}`).removeClass("active");
 
-      if ($(this).attr('id').split('-').length <= 1) {
-        distance = $(this).attr('id'); 
-        sessionStorage.setItem('distance', distance); 
+      if (
+        $(this)
+          .attr("id")
+          .split("-").length <= 1
+      ) {
+        distance = $(this).attr("id");
+        sessionStorage.setItem("distance", distance);
       } else {
-        distance = $(this).attr('id').split('-')[1]; 
-        sessionStorage.setItem('distance', distance); 
+        distance = $(this)
+          .attr("id")
+          .split("-")[1];
+        sessionStorage.setItem("distance", distance);
       }
 
-
-      searchListings()
-      console.log(distance)
+      searchListings();
+      console.log(distance);
     }
-    
   });
-
-  
 
   // function getLocation() {
   //   if (navigator.geolocation) {
@@ -456,64 +460,74 @@ async function drawMap(geoPos, city) {
   //   sessionStorage.setItem("lat", position.coords.latitude);
   //   sessionStorage.setItem("lng", position.coords.longitude);
   // }
-  let allListings = []; 
+  let allListings = [];
 
-  function searchListings () {
-  $("#listings-column").html('')
+  function searchListings() {
+    $("#listings-column").html("");
 
-  allListings = []; 
-    
-  let search = sessionStorage.getItem("searchQuery"); 
-  const logoSearch = sessionStorage.getItem('logoSearch'); 
+    allListings = [];
 
-  let category = "";
-  let association = ""; 
+    let search = sessionStorage.getItem("searchQuery");
+    const logoSearch = sessionStorage.getItem("logoSearch");
 
-  // check if it is a category
-  categories.forEach(item => {
-    if (search && item.title.toLowerCase() === search.toLowerCase()) {
-      category = search;
-    }
-  });
+    let category = "";
+    let association = "";
 
-  if ( category !== "" ) {
-    let newSearch = category.replace(/\//g, '+');
-    console.log(newSearch)
-    myAxios
-      .get(
-        API_URL +
-          "search/category/" +
-          newSearch +
-          "/" +
-          location.coords.latitude + "+" + location.coords.longitude + '/' + distance
-      )
-      .then(response => {
-        allListings = response.data
-        let searchAppend = ''
-        !category ? searchAppend = sessionStorage.getItem('logoSearch') : searchAppend = search
-        $('input.request').val(searchAppend)
-        console.log(response)
-        console.log(search)
-        if (response.data.length === 0 || response.status === 304) {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          $("#listings-column").append(
-            `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
-          );
-          $(page).fadeIn();
-          $(loader).fadeOut();
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
+    // check if it is a category
+    categories.forEach(item => {
+      if (search && item.title.toLowerCase() === search.toLowerCase()) {
+        category = search;
+      }
+    });
+
+    if (category !== "") {
+      let newSearch = category.replace(/\//g, "+");
+      console.log(newSearch);
+      myAxios
+        .get(
+          API_URL +
+            "search/category/" +
+            newSearch +
+            "/" +
+            location.coords.latitude +
+            "+" +
+            location.coords.longitude +
+            "/" +
+            distance
+        )
+        .then(response => {
+          allListings = response.data;
+          let searchAppend = "";
+          !category
+            ? (searchAppend = sessionStorage.getItem("logoSearch"))
+            : (searchAppend = search);
+          $("input.request").val(searchAppend);
+          console.log(response);
+          console.log(search);
+          if (response.data.length === 0 || response.status === 304) {
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            $("#listings-column").append(
+              `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
+            );
+            $(page).fadeIn();
+            $(loader).fadeOut();
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
           } else {
-            drawMap(location)
-          }
-        } else {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          response.data.forEach(listing => {
-            $("#listings-column")
-              .append(`<div
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            response.data.forEach(listing => {
+              $("#listings-column").append(`<div
               style="margin-bottom: 1rem; background: #f8f8f8"
               class="ui grid segment listingItem-search"
               id="list-item"
@@ -523,7 +537,8 @@ async function drawMap(geoPos, city) {
                   <div class="ui image" >
                       <img
                       class="ui rounded image"
-                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image ||
+                        "placeholder.png"}"
                     />
                   </div>
                 </div>
@@ -533,11 +548,15 @@ async function drawMap(geoPos, city) {
                       style="padding: 1rem 0rem 0rem .5rem;"
                       class="ten wide column"
                     >
-                      <a href="#"  id="${listing.id}" class="listingTitle-search">
-                        ${listing.business_title} <i class="small check circle icon" style="color: #1f7a8c;" ></i>
+                      <a href="#"  id="${
+                        listing.id
+                      }" class="listingTitle-search">
+                        ${
+                          listing.business_title
+                        } <i class="small check circle icon" style="color: #1f7a8c;" ></i>
                       </a>
                       <p class="listingSubtitle-search">
-                        ${listing.category || "" }
+                        ${listing.category || ""}
                       </p>
                       
                     </div>
@@ -545,10 +564,12 @@ async function drawMap(geoPos, city) {
                     class="six wide computer only column"
                   >
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone || "999-999-9999"}
+                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone ||
+                        "999-999-9999"}
                     </p>
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city || listing.full_address}
+                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city ||
+                        listing.full_address}
                     </p>
                     <!-- <button style="margin-top: 1rem; background: #1f7a8c; color: white; margin-right: 1.5rem;" class="ui right floated button">Preview</button> -->
                   </div>
@@ -562,63 +583,82 @@ async function drawMap(geoPos, city) {
                   </div>
                 </div>
             </div>`);
-          });
-          
-          response.data.forEach(item => {
-            markerInfo.push(item);
-          });
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
-          }
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        window.location.assign('error.html')
-      })
-      .catch(err => {
-        console.log(err);
-        window.location.assign('error.html')
-      });
-  } else if ( search && !logoSearch) {
-    myAxios
-      .get(
-        API_URL + "search/" + search + "/" + location.coords.latitude + "+" + location.coords.longitude + '/' + distance
-      )
-      .then(response => {
-        allListings = response.data
-        let searchAppend = ''
-        sessionStorage.getItem('searchQuery') ? searchAppend = sessionStorage.getItem('searchQuery') : searchAppend = category; 
-        $('input.request').val(searchAppend)
-        console.log(response);
-        if (response.data.length === 0 || response.status === 304) {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          $("#listings-column").append(
-            `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
-          );
-          $('#request').attr('placeholder', searchAppend)
-          $(page).fadeIn();
-          $(loader).fadeOut();
+            });
 
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
+            response.data.forEach(item => {
+              markerInfo.push(item);
+            });
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
           }
-        } else {
-          let searchAppend = ''
-        sessionStorage.getItem('searchQuery') ? searchAppend = sessionStorage.getItem('searchQuery') : searchAppend = category; 
-        $('input.request').val(searchAppend)
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          response.data.forEach(listing => {
-            $("#listings-column")
-              .append(`<div
+        })
+        .catch(err => {
+          console.log(err);
+          window.location.assign('error.html')
+        })
+        .catch(err => {
+          console.log(err);
+          window.location.assign('error.html')
+        });
+    } else if (search && !logoSearch) {
+      myAxios
+        .get(
+          API_URL +
+            "search/" +
+            search +
+            "/" +
+            location.coords.latitude +
+            "+" +
+            location.coords.longitude +
+            "/" +
+            distance
+        )
+        .then(response => {
+          allListings = response.data;
+          let searchAppend = "";
+          sessionStorage.getItem("searchQuery")
+            ? (searchAppend = sessionStorage.getItem("searchQuery"))
+            : (searchAppend = category);
+          $("input.request").val(searchAppend);
+          console.log(response);
+          if (response.data.length === 0 || response.status === 304) {
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            $("#listings-column").append(
+              `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
+            );
+            $("#request").attr("placeholder", searchAppend);
+            $(page).fadeIn();
+            $(loader).fadeOut();
+
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
+          } else {
+            let searchAppend = "";
+            sessionStorage.getItem("searchQuery")
+              ? (searchAppend = sessionStorage.getItem("searchQuery"))
+              : (searchAppend = category);
+            $("input.request").val(searchAppend);
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            response.data.forEach(listing => {
+              $("#listings-column").append(`<div
               style="margin-bottom: 1rem; background: #f8f8f8"
               class="ui grid segment listingItem-search"
               id="list-item"
@@ -629,7 +669,8 @@ async function drawMap(geoPos, city) {
                       <img 
                       style="max-height: 200px;"
                       class="ui rounded fluid image"
-                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image ||
+                        "placeholder.png"}"
                     />
                   </div>
                 </div>
@@ -639,11 +680,15 @@ async function drawMap(geoPos, city) {
                       style="padding: 1rem 0rem 0rem .5rem;"
                       class="ten wide column"
                     >
-                      <a href="#" id="${listing.id}" class="listingTitle-search">
-                        ${listing.business_title} <i class="tiny check circle icon" style="color: #1f7a8c;" ></i>
+                      <a href="#" id="${
+                        listing.id
+                      }" class="listingTitle-search">
+                        ${
+                          listing.business_title
+                        } <i class="tiny check circle icon" style="color: #1f7a8c;" ></i>
                       </a>
                       <p class="listingSubtitle-search">
-                        ${listing.category || "" }
+                        ${listing.category || ""}
                       </p>
                       
                     </div>
@@ -651,10 +696,12 @@ async function drawMap(geoPos, city) {
                     class="six wide computer only column"
                   >
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone || "999-999-9999"}
+                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone ||
+                        "999-999-9999"}
                     </p>
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city || listing.full_address}
+                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city ||
+                        listing.full_address}
                     </p>
                     <!-- <button style="margin-top: 1rem; background: #79bcb8; color: white; margin-right: 1.5rem;" class="ui right floated button">Preview</button> -->
                   </div>
@@ -666,62 +713,73 @@ async function drawMap(geoPos, city) {
                   </div>
                 </div>
             </div>`);
-          });
-          
-          response.data.forEach(item => {
-            markerInfo.push(item);
-          });
-        if (sessionStorage.getItem('location')) {
-          $('#location').attr('placeholder', sessionStorage.getItem('location'))
-          drawMap(null, sessionStorage.getItem('location'))
-        } else {
-          drawMap(location)
-        }
-          
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        window.location.assign('error.html')
-      });
-  } else if ( logoSearch ) {
+            });
 
-    console.log(logoSearch)
-    myAxios
-      .get(
-        API_URL +
-          "search/logo/" +
-          logoSearch +
-          "/" +
-          location.coords.latitude + "+" + location.coords.longitude + '/' + distance
-      )
-      .then(response => {
-        allListings = response.data
-        let searchAppend = ''
-        sessionStorage.getItem('logoSearch') ? searchAppend = sessionStorage.getItem('logoSearch') : searchAppend = search
-        $('input.request').val(searchAppend)
-        console.log(response)
-        if (response.data.length === 0 || response.status === 304) {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          $("#listings-column").append(
-            `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
-          );
-          $(page).fadeIn();
-          $(loader).fadeOut();
-
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
+            response.data.forEach(item => {
+              markerInfo.push(item);
+            });
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
           }
-        } else {
-          $("#listings-column")
-              .append(`<p id="listing-column-title" >Search results for "${searchAppend}"</p>`)
-          response.data.forEach(listing => {
-            $("#listings-column")
-              .append(`<div
+        })
+        .catch(err => {
+          console.log(err);
+          window.location.assign('error.html')
+        });
+    } else if (logoSearch) {
+      console.log(logoSearch);
+      myAxios
+        .get(
+          API_URL +
+            "search/logo/" +
+            logoSearch +
+            "/" +
+            location.coords.latitude +
+            "+" +
+            location.coords.longitude +
+            "/" +
+            distance
+        )
+        .then(response => {
+          allListings = response.data;
+          let searchAppend = "";
+          sessionStorage.getItem("logoSearch")
+            ? (searchAppend = sessionStorage.getItem("logoSearch"))
+            : (searchAppend = search);
+          $("input.request").val(searchAppend);
+          console.log(response);
+          if (response.data.length === 0 || response.status === 304) {
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            $("#listings-column").append(
+              `<p id="no-results-text" >There are no results for "${searchAppend}" in your area.`
+            );
+            $(page).fadeIn();
+            $(loader).fadeOut();
+
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
+          } else {
+            $("#listings-column").append(
+              `<p id="listing-column-title" >Search results for "${searchAppend}"</p>`
+            );
+            response.data.forEach(listing => {
+              $("#listings-column").append(`<div
               style="margin-bottom: 1rem; background: #f8f8f8"
               class="ui grid segment listingItem-search"
               id="list-item"
@@ -731,7 +789,8 @@ async function drawMap(geoPos, city) {
                   <div class="ui image" >
                       <img
                       class="ui rounded image"
-                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image || "placeholder.png"}"
+                      src="https://hairauthoritydirectory.s3.amazonaws.com/${listing.feature_image ||
+                        "placeholder.png"}"
                     />
                   </div>
                 </div>
@@ -741,11 +800,15 @@ async function drawMap(geoPos, city) {
                       style="padding: 1rem 0rem 0rem .5rem;"
                       class="ten wide column"
                     >
-                      <a href="#"  id="${listing.id}" class="listingTitle-search">
-                        ${listing.business_title} <i class="small check circle icon" style="color: #1f7a8c;" ></i>
+                      <a href="#"  id="${
+                        listing.id
+                      }" class="listingTitle-search">
+                        ${
+                          listing.business_title
+                        } <i class="small check circle icon" style="color: #1f7a8c;" ></i>
                       </a>
                       <p class="listingSubtitle-search">
-                        ${listing.category || "" }
+                        ${listing.category || ""}
                       </p>
                       
                     </div>
@@ -753,10 +816,12 @@ async function drawMap(geoPos, city) {
                     class="six wide computer only column"
                   >
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone || "999-999-9999"}
+                      <i style="color: #1f7a8c;" class="small phone icon" ></i>${listing.phone ||
+                        "999-999-9999"}
                     </p>
                     <p class="listing-info-text">
-                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city || listing.full_address}
+                      <i style="color: #1f7a8c;" class="location small arrow icon" ></i>${listing.city ||
+                        listing.full_address}
                     </p>
                     <!-- <button style="margin-top: 1rem; background: #1f7a8c; color: white; margin-right: 1.5rem;" class="ui right floated button">Preview</button> -->
                   </div>
@@ -770,55 +835,57 @@ async function drawMap(geoPos, city) {
                   </div>
                 </div>
             </div>`);
-          });
-          
-          response.data.forEach(item => {
-            markerInfo.push(item);
-          });
-          if (sessionStorage.getItem('location')) {
-            $('#location').attr('placeholder', sessionStorage.getItem('location'))
-            drawMap(null, sessionStorage.getItem('location'))
-          } else {
-            drawMap(location)
+            });
+
+            response.data.forEach(item => {
+              markerInfo.push(item);
+            });
+            if (sessionStorage.getItem("location")) {
+              $("#location").attr(
+                "placeholder",
+                sessionStorage.getItem("location")
+              );
+              drawMap(null, sessionStorage.getItem("location"));
+            } else {
+              drawMap(location);
+            }
           }
-        }
-      })
-      .catch(err => {
-        console.log(err);
-        window.location.assign('error.html')
-      })
-      .catch(err => {
-        console.log(err);
-        window.location.assign('error.html')
-      });
-  } else {
-    console.log('nada')
-    // window.location.assign('index.html')
+        })
+        .catch(err => {
+          console.log(err);
+          window.location.assign('error.html')
+        })
+        .catch(err => {
+          console.log(err);
+          window.location.assign('error.html')
+        });
+    } else {
+      console.log("nada");
+      // window.location.assign('index.html')
+    }
   }
-}
 
-searchListings()
-
+  searchListings();
 
   $("body").on("click", "#admin-menu-option", function() {
     event.preventDefault();
-    
+
     if (authHelper.isLoggedIn__admin()) {
       sessionStorage.setItem("lastLocation", "index");
       window.location.assign("admin.portal.html");
     } else {
-      alert('You must Have a verified business to view this page')
+      alert("You must Have a verified business to view this page");
     }
   });
 
   $("body").on("click", "#dashboard-menu-option", function() {
     event.preventDefault();
-    
+
     if (authHelper.isLoggedIn__professional()) {
       sessionStorage.setItem("lastLocation", "index");
       window.location.assign("dashboard.html");
     } else {
-      alert('You must Have a verified business to view this page')
+      alert("You must Have a verified business to view this page");
     }
   });
 
@@ -862,11 +929,10 @@ searchListings()
     }
   });
 
-
   $("body").on("click", "#sign-in-button", function() {
     event.preventDefault();
 
-    sessionStorage.setItem('lastLocation', 'index')
+    sessionStorage.setItem("lastLocation", "index");
     window.location.assign("sign-in.html");
   });
 
@@ -884,7 +950,7 @@ searchListings()
         });
     } else {
       alert("please sign in to save listings");
-      sessionStorage.setItem('lastLocation', 'search')
+      sessionStorage.setItem("lastLocation", "search");
 
       window.location.assign("sign-in.html");
     }
@@ -924,41 +990,39 @@ searchListings()
   });
 
   $("body").on("click", "#back-button", function() {
-
-    sessionStorage.setItem('lastLocation', 'search')
-    if (sessionStorage.getItem('lastLocation') === 'sign-in' ) {
-      window.location.assign('index.html')
-    } else if (sessionStorage.getItem('lastLocation') === 'search' ) {
-      window.location.assign('index.html')
+    sessionStorage.setItem("lastLocation", "search");
+    if (sessionStorage.getItem("lastLocation") === "sign-in") {
+      window.location.assign("index.html");
+    } else if (sessionStorage.getItem("lastLocation") === "search") {
+      window.location.assign("index.html");
     } else {
-      window.history.back()
+      window.history.back();
     }
   });
 
   $("body").on("click", "#dashboard-menu-option", function() {
     event.preventDefault();
-    
+
     if (authHelper.isLoggedIn__professional()) {
       sessionStorage.setItem("lastLocation", "index");
       window.location.assign("dashboard.html");
     } else {
-      alert('You must Have a verified business to view this page')
+      alert("You must Have a verified business to view this page");
     }
   });
 
   $("body").on("click", "a.listingTitle-search", function(e) {
     const id = $(this).attr("id");
     // filter arr of all listings on page to find clicked on listing and get the id
-    let getCoords = allListings.filter(x => x.id === id); 
-    // set the last window location to search 
-    sessionStorage.setItem('lastLocation', 'search')
+    let getCoords = allListings.filter(x => x.id === id);
+    // set the last window location to search
+    sessionStorage.setItem("lastLocation", "search");
     // set the current listing lat and lng in SS
-    sessionStorage.setItem('listing-lat', getCoords[0].lat)
-    sessionStorage.setItem('listing-lng', getCoords[0].lng)
-    // set full address for if no coords 
-    sessionStorage.setItem('listing-address', getCoords[0].full_address)
+    sessionStorage.setItem("listing-lat", getCoords[0].lat);
+    sessionStorage.setItem("listing-lng", getCoords[0].lng);
+    // set full address for if no coords
+    sessionStorage.setItem("listing-address", getCoords[0].full_address);
     sessionStorage.setItem("currentListing", id);
     window.location.assign("listing.html");
   });
-
 });
