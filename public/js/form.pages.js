@@ -97,7 +97,8 @@ function fillProgressBar (formsCompleted) {
 }
 
 // ec2 api url 
-const API_URL = "https://hadirectoryapi.com/api/"; 
+// const API_URL = "https://hadirectoryapi.com/api/"; 
+const API_URL = "http://localhost:3000/api/"; 
 const ZOHO_URL = "https://hadirectoryapi.com/zoho/"; 
 const AUTH_URL = "https://hadirectoryapi.com/auth/"; 
 const ADMIN_URL = "https://hadirectoryapi.com/admin/"; 
@@ -231,7 +232,7 @@ $(document).ready(function() {
       name + "=" + escape(value) + "; path=/; expires=" + expiry.toGMTString();
   }
 
-  $(".ui.checkbox").checkbox({
+  $(".ui.toggle.checkbox").checkbox({
     onChecked: function() {
       console.log("checked");
       const openingHours = document.querySelector("#opening-hours-field");
@@ -649,6 +650,18 @@ $(document).ready(function() {
     }
   });
 
+  function specialSkillsSubmit () {
+    return $('.specialSkills').map((i, elem) => {
+            const name = $(elem).find('input').attr('name'); 
+            const checked = $(elem).find('input').is(':checked'); 
+        
+            if (checked) return name
+            else return null; 
+        }); 
+  }
+
+
+
   //submit fifth form
   $("body").on("click", "#submit5", function() {
     event.preventDefault();
@@ -663,6 +676,13 @@ $(document).ready(function() {
       delta.delta = quill.getContents()
       delta.listing_id = finalForm.id 
     }
+
+    const skills = specialSkillsSubmit(); 
+    if (skills.length) {
+      finalForm.specialSkills = skills; 
+    }
+
+    // if special skills boxes are checked add a key pair 
 
     myAxios
       .put(API_URL + "stagelisting", finalForm)
